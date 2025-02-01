@@ -6,6 +6,7 @@ import flyingRocket from "../../assets/astronaut/flying-rocket.gif";
 import step1 from "../../assets/astronaut/searching.svg";
 import step2 from "../../assets/astronaut/all-resources.svg";
 import step3 from "../../assets/astronaut/winner.svg";
+import { Title } from "../../components/Title/Title";
 
 export const Home = () => {
   return (
@@ -32,11 +33,7 @@ export const Home = () => {
       </Helmet>
 
       {/* Header */}
-      <div className="home-title">
-        <img src="/logo.gif" alt="Top Hackathons Logo" className="logo" />
-        <span className="title">Top Hackathons</span>
-      </div>
-
+      <Title/>
       <main>
         {/* Hero Section */}
         <section className="hero-section">
