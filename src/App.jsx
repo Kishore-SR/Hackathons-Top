@@ -5,9 +5,11 @@ import { Home } from "./pages/Home/Home";
 import { Explore } from "./pages/Explore/Explore";
 import { Tools } from "./pages/Tools/Tools";
 import { Profile } from "./pages/Profile/Profile";
+import { HelmetProvider } from "react-helmet-async";
 
 export const App = () => {
   return (
+    <HelmetProvider>
     <Router>
       <div>
         <Routes>
@@ -19,5 +21,6 @@ export const App = () => {
         <Navbar />
       </div>
     </Router>
+    </HelmetProvider>
   );
 };
