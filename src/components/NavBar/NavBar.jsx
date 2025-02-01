@@ -15,7 +15,7 @@ export const Navbar = () => {
         </div>
         <div className="nav-links">
           <Link to="/" className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>
-          <i class="ri-home-5-fill"></i>
+            <i className="ri-home-5-line"></i>
             <span>Home</span>
           </Link>
           <Link to="/explore" className={`nav-item ${location.pathname === "/explore" ? "active" : ""}`}>
@@ -23,7 +23,7 @@ export const Navbar = () => {
             <span>Explore</span>
           </Link>
           <Link to="/tools" className={`nav-item ${location.pathname === "/tools" ? "active" : ""}`}>
-            <i className="ri-tools-line"></i>
+            <i className="ri-function-add-line"></i>
             <span>Tools</span>
           </Link>
           <Link to="/profile" className={`nav-item ${location.pathname === "/profile" ? "active" : ""}`}>
@@ -36,7 +36,7 @@ export const Navbar = () => {
       {/* Mobile Bottom Navbar */}
       <nav className="bottom-navbar">
         <Link to="/" className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>
-        <i class="ri-home-5-fill"></i>
+          <i className="ri-home-5-line"></i>
           <span>Home</span>
         </Link>
         <Link to="/explore" className={`nav-item ${location.pathname === "/explore" ? "active" : ""}`}>
@@ -44,7 +44,7 @@ export const Navbar = () => {
           <span>Explore</span>
         </Link>
         <Link to="/tools" className={`nav-item ${location.pathname === "/tools" ? "active" : ""}`}>
-          <i className="ri-tools-line"></i>
+          <i className="ri-function-add-line"></i>
           <span>Tools</span>
         </Link>
         <Link to="/profile" className={`nav-item ${location.pathname === "/profile" ? "active" : ""}`}>
