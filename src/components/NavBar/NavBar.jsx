@@ -10,7 +10,7 @@ export const Navbar = () => {
       {/* Desktop Top Navbar */}
       <nav className="top-navbar">
         <div className="logo-title">
-          <img src="/logo.png" alt="Logo" className="logo" />
+          <img src="/logo.gif" alt="Logo" className="logo" />
           <span className="title">Top Hackathons</span>
         </div>
         <div className="nav-links">

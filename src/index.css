@@ -2,14 +2,15 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #01b72f;  
+  --primary-color: #01b72f; 
+  --black:#272020; 
 }
 
 body {
   font-family: var(--font-family);
   --font-family: "Host Grotesk", sans-serif; 
   background-color: #f8f9fa; 
-  color: #212529; 
+  color: var(--black); 
   margin: 0;
   padding: 0;
   box-sizing: border-box;
