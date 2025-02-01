@@ -5,7 +5,6 @@ import { Home } from "./pages/Home/Home";
 import { Explore } from "./pages/Explore/Explore";
 import { Tools } from "./pages/Tools/Tools";
 import { Profile } from "./pages/Profile/Profile";
-import "./App.css"; // Global styles (if any)
 
 export const App = () => {
   return (
