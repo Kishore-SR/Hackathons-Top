@@ -148,4 +148,81 @@
     transform: translateY(0);
     height: 150px;
   }
+
+  .footer-about h4 {
+    font-size: 1.36rem;
+    margin-bottom: -8px;
+  }
+
+  .footer-about p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .social-icons {
+    margin-top: 40px;
+    justify-content: center;
+  }
+}
+
+/* Footer quick links */
+.quick-links {
+  margin-top: 20px;
+  margin-left: 40px;
+}
+
+.quick-links h1 {
+  font-size: 1.2rem;
+  color: gainsboro;
+  margin-bottom: -6px;
+  margin-top: 50px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  width: 94%;
+}
+
+.left-links,
+.right-links {
+  display: flex;
+
+  gap: 40px;
+}
+
+.left-links {
+  align-items: flex-start;
+}
+
+.right-links {
+  align-items: flex-end;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: rgb(175, 175, 175);
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  display: flex;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  color: greenyellow;
+}
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: -20px;
+}
+.footer-bottom img {
+  width: 1.2rem;
+}
+.footer-bottom p {
+  font-size: 0.9rem;
+  color: #ccc;
 }

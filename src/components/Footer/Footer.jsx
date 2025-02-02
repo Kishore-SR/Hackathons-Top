@@ -1,6 +1,8 @@
 import React from "react";
 import "./Footer.css";
 import star from "../../assets/astronaut/footer-star.svg";
+import logo from "../../assets/icons/Top-Hackathons.svg";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
@@ -38,6 +40,52 @@ export const Footer = () => {
         <div className="footer-img">
           <img src={star} alt="star" />
         </div>
+      </main>
+
+      <main className="quick-links">
+        <h1>Quick Links</h1>
+        <div className="footer-links">
+          <section className="left-links">
+            <p>
+              <Link to="/story" className="footer-link">
+                Story
+              </Link>
+            </p>
+            <p>
+              <Link to="/submit" className="footer-link">
+                Submit
+              </Link>
+            </p>
+            <p>
+              <Link to="/blogs" className="footer-link">
+                Blogs
+              </Link>
+            </p>
+            <p>
+              <a href="mailto:kishoresr01@gmail.com" className="footer-link">
+                Contact
+              </a>
+            </p>
+          </section>
+
+          <section className="right-links">
+            <p>
+              <Link to="/privacy" className="footer-link">
+                Privacy
+              </Link>
+            </p>
+            <p>
+              <Link to="/terms" className="footer-link">
+                Terms
+              </Link>
+            </p>
+          </section>
+        </div>
+      </main>
+
+      <main className="footer-bottom">
+        <img src={logo} alt="logo" />
+        <p>Top Hackathons &copy; 2025</p>
       </main>
     </footer>
   );
