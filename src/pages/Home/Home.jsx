@@ -7,6 +7,7 @@ import step1 from "../../assets/astronaut/searching.svg";
 import step2 from "../../assets/astronaut/all-resources.svg";
 import step3 from "../../assets/astronaut/winner.svg";
 import { Title } from "../../components/Title/Title";
+import { Footer } from "../../components/Footer/Footer";
 
 export const Home = () => {
   return (
@@ -77,6 +78,8 @@ export const Home = () => {
           </Link>
         </section>
       </main>
+
+      <Footer/>
     </div>
   );
 };
