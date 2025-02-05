@@ -4,7 +4,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Home } from "./pages/Home/Home";
 import Explore from "./pages/Explore/Explore";
 import {Tools} from "./pages/Tools/Tools";
-import { Profile } from "./pages/Profile/Profile";
+import Profile  from "./pages/Profile/Profile";
 import { HelmetProvider } from "react-helmet-async";
 import Login from "./pages/Login";
 import Register from "./pages/Register";

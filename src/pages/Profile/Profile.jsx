@@ -1,13 +1,31 @@
-import { UserButton, useUser } from "@clerk/clerk-react";
-import "./Profile.css"
+import React from "react";
+import { SignInButton, SignUpButton, useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+import "./Profile.css";
 
-export default function Profile() {
-  const { user } = useUser();
+const Profile = () => {
+  const { isSignedIn } = useUser();
+  const navigate = useNavigate();
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Welcome, {user?.fullName}!</h1>
-      <UserButton />
+    <div className="profile-container">
+      <div className="profile-box">
+        {!isSignedIn ? (
+          <>
+            <button onClick={() => navigate("/Login")}>Login</button>
+            <button onClick={() => navigate("/Register")}>Register</button>
+            <p>Login to access more features</p>
+          </>
+        ) : (
+          <>
+            <h2>Welcome!</h2>
+            
+            <button onClick={() => navigate("/submit")}>Submit Hackathon</button>
+          </>
+        )}
+      </div>
     </div>
   );
-}
+};
+
+export default Profile;
