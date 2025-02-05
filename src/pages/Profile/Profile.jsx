@@ -1,11 +1,13 @@
-import React from "react";
-import "./Profile.css"; // Import the CSS file
+import { UserButton, useUser } from "@clerk/clerk-react";
+import "./Profile.css"
 
-export const Profile = () => {
+export default function Profile() {
+  const { user } = useUser();
+
   return (
-    <div className="profile-container">
-      <h1>My Profile</h1>
-      <p>Your saved hackathons and profile details will go here.</p>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Welcome, {user?.fullName}!</h1>
+      <UserButton />
     </div>
   );
-};
+}

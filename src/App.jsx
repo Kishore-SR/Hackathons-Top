@@ -6,6 +6,8 @@ import Explore from "./pages/Explore/Explore";
 import {Tools} from "./pages/Tools/Tools";
 import { Profile } from "./pages/Profile/Profile";
 import { HelmetProvider } from "react-helmet-async";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 export const App = () => {
   return (
@@ -17,6 +19,8 @@ export const App = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/tools" element={<Tools/>} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
           </Routes>
           <Navbar />
         </div>
