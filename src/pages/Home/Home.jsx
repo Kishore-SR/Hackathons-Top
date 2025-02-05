@@ -42,7 +42,7 @@ export const Home = () => {
             <h1>Code. Collaborate. Celebrate.</h1>
             <h2>All Top Hackathons in One Place</h2>
             <p>
-              Discover top hackathons across India, build projects, win prizes,
+              Discover top hackathons across India, build projects, win prizes
               and unlock new opportunities.
             </p>
             <Link to="/explore" className="cta-button">

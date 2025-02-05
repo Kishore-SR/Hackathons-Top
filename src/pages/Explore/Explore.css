@@ -1,49 +1,203 @@
 .explore {
   padding: 20px;
-  text-align: center;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.explore h1 {
-  font-size: 2rem;
+.explore-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
-  color: #01b72f;
 }
 
 .hackathon-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  align-items: center;
+  justify-content: center;
 }
 
-.hackathon-item {
-  background-color: #f0f4f8;
-  padding: 15px;
+.hackathon-card {
+  border: 1px solid #ccc;
   border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  text-align: center;
+  padding: 15px;
+}
+
+.hackathon-poster {
   width: 100%;
-  max-width: 600px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
-.hackathon-item h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333;
+.hackathon-details {
+  padding: 10px;
 }
 
-.hackathon-item p {
+.hackathon-details h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.hackathon-details p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
   margin: 5px 0;
-  color: #666;
 }
 
-.hackathon-item a {
-  color: #01b72f;
-  text-decoration: none;
+.hackathon-details .ri-trophy-fill {
+  color: #FFD700;
+}
+
+.prize-highlight {
+  background: #FFF9C4;
+  color: #DAA520;
+  padding: 2px 5px;
+  border-radius: 4px;
   font-weight: bold;
-  margin-top: 10px;
-  display: inline-block;
 }
 
-.hackathon-item a:hover {
-  text-decoration: underline;
+.status-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: smoothBlink 1.4s infinite ease-in-out;
+}
+
+.status-dot.green {
+  background: rgb(26, 214, 26);
+}
+
+.status-dot.orange {
+  background: orange;
+}
+
+.status-dot.red {
+  background: red;
+}
+
+.status-text {
+  font-weight: bold;
+}
+
+.status-text.green {
+  color: rgb(26, 214, 26);
+}
+
+.status-text.orange {
+  color: orange;
+}
+
+.status-text.red {
+  color: red;
+}
+
+@keyframes smoothBlink {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.participate-btn {
+  background: #01b72f;
+  color: white;
+  padding: 5px 12px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.view-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 15px;
+  background: #01b72f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .hackathon-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hackathon-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+/* Sort Button and Options */
+.sort-container {
+  position: relative;
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sort-button:hover {
+  background-color: #0056b3;
+}
+
+.sort-options {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 180px;
+}
+
+.sort-option {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background 0.3s ease;
+}
+
+.sort-option:hover {
+  background: #f1f1f1;
+}
+
+.sort-option.active {
+  background: #007bff;
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .sort-options {
+    right: -50px;
+  }
 }
