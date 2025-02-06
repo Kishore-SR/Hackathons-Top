@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { Title } from "../../components/Title/Title";
 import { Helmet } from "react-helmet-async";
+import { Loading } from "../../components/Loading/Loading";
 
 const Explore = () => {
   const [hackathons, setHackathons] = useState([]);
   const [filteredHackathons, setFilteredHackathons] = useState([]);
   const [sortOption, setSortOption] = useState("nearest");
   const [showSortOptions, setShowSortOptions] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // To fetch hackathons from Firestore
   useEffect(() => {
@@ -41,6 +43,7 @@ const Explore = () => {
 
       setHackathons(finalHackathonList);
       setFilteredHackathons(finalHackathonList);
+      setLoading(false);
     };
 
     fetchHackathons();
@@ -138,62 +141,71 @@ const Explore = () => {
             )}
           </div>
         </div>
-        <div className="hackathon-list">
-          {filteredHackathons.slice(0, 9).map((hackathon) => {
-            const isClosed = new Date(hackathon.end) < new Date();
-            return (
-              <div
-                key={hackathon.id}
-                className="hackathon-card"
-                style={{ opacity: isClosed ? 0.7 : 1 }}
-              >
-                <img
-                  src={hackathon.posterUrl}
-                  alt="Poster"
-                  className="hackathon-poster"
-                />
-                <div className="hackathon-details">
-                  <h2>{hackathon.name}</h2>
-                  <p>
-                    <i className="ri-calendar-2-line"></i> {hackathon.date}
-                  </p>
-                  <p>
-                    <i className="ri-map-pin-2-line"></i> {hackathon.location}
-                  </p>
-                  <p>
-                    <i className="ri-trophy-line"></i> Prizes Worth{" "}
-                    <span className="prize-highlight">{hackathon.prize}</span>
-                  </p>
-                  <div className="status-container">
-                    <span
-                      className={`status-text ${getStatusClass(
-                        hackathon.end,
-                        isClosed
-                      )}`}
-                    >
-                      {isClosed
-                        ? "Registration Closed"
-                        : getDaysLeftText(hackathon.end)}
-                    </span>
 
-                    <a
-                      target="_blank"
-                      rel="noreferrer"
-                      href={isClosed ? "#" : hackathon.website}
-                      className={`participate-btn ${isClosed ? "closed" : ""}`}
-                      style={{
-                        pointerEvents: isClosed ? "none" : "auto",
-                        backgroundColor: isClosed ? "#b5b5b5" : "#01b72f",
-                      }}
-                    >
-                      Participate
-                    </a>
+        {loading ? (
+          <div className="loading-container">
+           <Loading/>
+          </div>
+        ) : (
+          <div className="hackathon-list">
+            {filteredHackathons.slice(0, 9).map((hackathon) => {
+              const isClosed = new Date(hackathon.end) < new Date();
+              return (
+                <div
+                  key={hackathon.id}
+                  className="hackathon-card"
+                  style={{ opacity: isClosed ? 0.7 : 1 }}
+                >
+                  <img
+                    src={hackathon.posterUrl}
+                    alt="Poster"
+                    className="hackathon-poster"
+                  />
+                  <div className="hackathon-details">
+                    <h2>{hackathon.name}</h2>
+                    <p>
+                      <i className="ri-calendar-2-line"></i> {hackathon.date}
+                    </p>
+                    <p>
+                      <i className="ri-map-pin-2-line"></i> {hackathon.location}
+                    </p>
+                    <p>
+                      <i className="ri-trophy-line"></i> Prizes Worth{" "}
+                      <span className="prize-highlight">{hackathon.prize}</span>
+                    </p>
+                    <div className="status-container">
+                      <span
+                        className={`status-text ${getStatusClass(
+                          hackathon.end,
+                          isClosed
+                        )}`}
+                      >
+                        {isClosed
+                          ? "Registration Closed"
+                          : getDaysLeftText(hackathon.end)}
+                      </span>
+
+                      <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={isClosed ? "#" : hackathon.website}
+                        className={`participate-btn ${
+                          isClosed ? "closed" : ""
+                        }`}
+                        style={{
+                          pointerEvents: isClosed ? "none" : "auto",
+                          backgroundColor: isClosed ? "#b5b5b5" : "#01b72f",
+                        }}
+                      >
+                        Participate
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
         {filteredHackathons.length > 9 && (
           <button className="view-more">View More</button>
         )}
