@@ -1,9 +1,15 @@
 import { SignIn } from "@clerk/clerk-react";
+import { Title } from "../components/Title/Title";
 
 export default function Login() {
   return (
-    <div style={{ display: "flex", justifyContent: "center", marginTop: "50px" }}>
-      <SignIn />
-    </div>
+    <>
+    <Title/>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "70px" }}
+      >
+        <SignIn />
+      </div>
+    </>
   );
 }

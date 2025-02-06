@@ -2,20 +2,22 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import "./Explore.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { Title } from "../../components/Title/Title";
 import { Helmet } from "react-helmet-async";
 import { Loading } from "../../components/Loading/Loading";
+import { useUser } from "@clerk/clerk-react"; // Clerk Auth Hook
 
 const Explore = () => {
+  const { isSignedIn } = useUser(); // Check if user is logged in
+  const navigate = useNavigate(); // For redirecting
   const [hackathons, setHackathons] = useState([]);
   const [filteredHackathons, setFilteredHackathons] = useState([]);
   const [sortOption, setSortOption] = useState("nearest");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // To fetch hackathons from Firestore
   useEffect(() => {
     const fetchHackathons = async () => {
       const querySnapshot = await getDocs(collection(db, "hackathons"));
@@ -24,7 +26,6 @@ const Explore = () => {
         hackathonList.push({ id: doc.id, ...doc.data() });
       });
 
-      // Separate closed registrations
       let ongoingHackathons = [];
       let closedHackathons = [];
 
@@ -38,7 +39,6 @@ const Explore = () => {
       });
 
       ongoingHackathons.sort((a, b) => new Date(a.date) - new Date(b.date));
-
       const finalHackathonList = [...ongoingHackathons, ...closedHackathons];
 
       setHackathons(finalHackathonList);
@@ -49,7 +49,6 @@ const Explore = () => {
     fetchHackathons();
   }, []);
 
-  // sorting of hackathons
   const handleSort = (option) => {
     let sortedHackathons = [...hackathons];
     const closedHackathons = sortedHackathons.filter(
@@ -76,20 +75,24 @@ const Explore = () => {
     setShowSortOptions(false);
   };
 
+  const handleParticipateClick = (isClosed, hackathonUrl) => {
+    if (isClosed) return;
+    if (!isSignedIn) {
+      navigate("/login");
+    } else {
+      window.open(hackathonUrl, "_blank");
+    }
+  };
+
   return (
     <main>
-      {/* SEO Meta Tags */}
       <Helmet>
         <title>Explore | Hackathons.top</title>
         <meta
           name="description"
-          content="Find the best hackathons happening near you. Hackathons are great places to code quickly, learn collaboration, and celebrate your ideas. Start participating and improve your skills."
+          content="Find the best hackathons happening near you. Hackathons are great places to code quickly, learn collaboration, and celebrate your ideas."
         />
         <meta name="author" content="Kishore S R" />
-        <meta
-          name="keywords"
-          content="hackathons, coding, programming, tech events, coding competition, software development, hackathons in Bengaluru, hackathons in Karnataka, engineering hackathons, student hackathons, tech competitions, coding competitions, Bangalore hackathons, hackathon events, developer hackathons, programming contests"
-        />
       </Helmet>
 
       <Title />
@@ -144,7 +147,7 @@ const Explore = () => {
 
         {loading ? (
           <div className="loading-container">
-           <Loading/>
+            <Loading />
           </div>
         ) : (
           <div className="hackathon-list">
@@ -185,20 +188,17 @@ const Explore = () => {
                           : getDaysLeftText(hackathon.end)}
                       </span>
 
-                      <a
-                        target="_blank"
-                        rel="noreferrer"
-                        href={isClosed ? "#" : hackathon.website}
-                        className={`participate-btn ${
-                          isClosed ? "closed" : ""
-                        }`}
+                      <button
+                        className={`participate-btn ${isClosed ? "closed" : ""}`}
                         style={{
-                          pointerEvents: isClosed ? "none" : "auto",
                           backgroundColor: isClosed ? "#b5b5b5" : "#01b72f",
                         }}
+                        onClick={() =>
+                          handleParticipateClick(isClosed, hackathon.website)
+                        }
                       >
                         Participate
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -221,7 +221,7 @@ const getStatusClass = (endDate, isClosed) => {
     (new Date(endDate) - new Date()) / (1000 * 60 * 60 * 24)
   );
   if (daysLeft > 7) return "green";
-  if (daysLeft >= 3) return "orange";
+  if (daysLeft >= 4) return "orange";
   return "red";
 };
 

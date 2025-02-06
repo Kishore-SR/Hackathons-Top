@@ -60,7 +60,7 @@ export const Home = () => {
 
         {/* Journey Section */}
         <section className="getting-started">
-          <h2 className="section-title">Your Hackathon Journey</h2>
+          <h2 className="section-title">Your Journey</h2>
           <div className="steps-grid">
             {journeySteps.map((step, index) => (
               <div className="step" key={index}>

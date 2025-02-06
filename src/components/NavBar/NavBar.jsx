@@ -40,7 +40,7 @@ export const Navbar = () => {
               <span>{user.firstName}</span>
             </div>
           ) : (
-            <div className="nav-item" onClick={() => navigate("/Login")}>
+            <div className="nav-item" onClick={() => navigate("/login")}>
               <i className="ri-user-star-line"></i>
               <span>Profile</span>
             </div>
@@ -69,7 +69,7 @@ export const Navbar = () => {
             <span>{user.firstName}</span>
           </div>
         ) : (
-          <div className="nav-item" onClick={() => navigate("/Login")}>
+          <div className="nav-item" onClick={() => navigate("/login")}>
             <i className="ri-user-star-line"></i>
             <span>Profile</span>
           </div>

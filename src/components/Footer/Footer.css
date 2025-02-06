@@ -140,7 +140,6 @@
 
   .footer-img {
     justify-content: center;
-    margin-top: 20px;
   }
 
   .footer-img img {
@@ -151,31 +150,33 @@
 
   .footer-about h4 {
     font-size: 1.36rem;
-    margin-bottom: -8px;
+    margin: 0;
+    margin-top: 12px;
   }
 
   .footer-about p {
     font-size: 0.8rem;
     line-height: 1.2;
+    margin-top: 4px;
   }
 
   .social-icons {
-    margin-top: 30px;
+    margin: 20px 0px;
     justify-content: center;
   }
 }
 
 /* Footer quick links */
 .quick-links {
-  margin-top: 20px;
   margin-left: 40px;
 }
 
 .quick-links h1 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: rgb(230, 223, 223);
   margin-bottom: -6px;
-  margin-top: 50px;
+  margin-top: 20px;
+  font-weight: 500;
 }
 
 .footer-links {
@@ -231,7 +232,7 @@
 @media (max-width: 768px) {
   .quick-links {
     margin-left: 0;
-    margin-top: -100px;
+    margin-top: -90px;
   }
   .quick-links h1 {
     font-size: 1.1rem;
@@ -240,16 +241,23 @@
     flex-direction: column;
   }
   .footer-link {
-    font-size: 0.94rem;
+    font-size: 0.9rem;
   }
   .left-links,
   .right-links {
-    gap: 24px;
+    gap: 28px;
   }
   .right-links {
-    margin-top: -16px;
+    margin-top: -20px;
   }
   .footer-bottom {
-    padding-bottom: 26%;
+    padding-bottom: 20%;
+    gap: 4px;
+  }
+  .footer-bottom img {
+    width: 0.8rem;
+  }
+  .footer-bottom p {
+    font-size: 0.78rem;
   }
 }
