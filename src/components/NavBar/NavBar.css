@@ -70,7 +70,6 @@
   bottom: 0;
   width: 100%;
   background-color: #f8f9fa;
-  padding: 6px 0;
   border-top: 1px solid #ddd;
 }
 
@@ -82,21 +81,14 @@
 .nav-item.active{
   font-weight: bold;
 }
-/* Home */
 .nav-item.active[href="/"] {
   color: #05b305 !important; 
 }
-/* Explore */
 .nav-item.active[href="/explore"] {
   color: #007bff !important; 
 }
-/* Tools */
 .nav-item.active[href="/tools"] {
   color: #f59f00 !important; 
-}
-/* Profile */
-.nav-item.active[href="/profile"] {
-  color: #007bff !important;
 }
 
 .nav-item.active i {

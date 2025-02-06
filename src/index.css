@@ -18,3 +18,11 @@ body {
 html {
   scroll-behavior: smooth;
 }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+  outline: none;
+  box-shadow: none;
+}
