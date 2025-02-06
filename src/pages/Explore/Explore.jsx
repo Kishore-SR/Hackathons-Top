@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import "./Explore.css";
+import { Link } from "react-router-dom";
+import { Footer } from "../../components/Footer/Footer";
+import { Title } from "../../components/Title/Title";
 
 const Explore = () => {
   const [hackathons, setHackathons] = useState([]);
@@ -9,94 +12,191 @@ const Explore = () => {
   const [sortOption, setSortOption] = useState("nearest");
   const [showSortOptions, setShowSortOptions] = useState(false);
 
-  // Fetch all hackathons from Firestore
+  // To fetch hackathons from Firestore
   useEffect(() => {
     const fetchHackathons = async () => {
       const querySnapshot = await getDocs(collection(db, "hackathons"));
-      const hackathonList = [];
+      let hackathonList = [];
       querySnapshot.forEach((doc) => {
         hackathonList.push({ id: doc.id, ...doc.data() });
       });
-      setHackathons(hackathonList);
-      setFilteredHackathons(hackathonList);
+
+      // Separate closed registrations
+      let ongoingHackathons = [];
+      let closedHackathons = [];
+
+      hackathonList.forEach((hackathon) => {
+        const isClosed = new Date(hackathon.end) < new Date();
+        if (isClosed) {
+          closedHackathons.push(hackathon);
+        } else {
+          ongoingHackathons.push(hackathon);
+        }
+      });
+
+      ongoingHackathons.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      const finalHackathonList = [...ongoingHackathons, ...closedHackathons];
+
+      setHackathons(finalHackathonList);
+      setFilteredHackathons(finalHackathonList);
     };
+
     fetchHackathons();
   }, []);
 
-  // Handle sorting of hackathons
+  // sorting of hackathons
   const handleSort = (option) => {
     let sortedHackathons = [...hackathons];
+    const closedHackathons = sortedHackathons.filter(
+      (hackathon) => new Date(hackathon.end) < new Date()
+    );
+    let ongoingHackathons = sortedHackathons.filter(
+      (hackathon) => new Date(hackathon.end) >= new Date()
+    );
+
     if (option === "nearest") {
-      sortedHackathons.sort((a, b) => new Date(a.date) - new Date(b.date));
+      ongoingHackathons.sort((a, b) => new Date(a.date) - new Date(b.date));
     } else if (option === "farthest") {
-      sortedHackathons.sort((a, b) => new Date(b.date) - new Date(a.date));
+      ongoingHackathons.sort((a, b) => new Date(b.date) - new Date(a.date));
     } else if (option === "highestPrize") {
-      sortedHackathons.sort(
+      ongoingHackathons.sort(
         (a, b) =>
-          parseInt(b.prize.replace(/[^0-9]/g, "")) - parseInt(a.prize.replace(/[^0-9]/g, ""))
+          parseInt(b.prize.replace(/[^0-9]/g, "")) -
+          parseInt(a.prize.replace(/[^0-9]/g, ""))
       );
     }
-    setFilteredHackathons(sortedHackathons);
+
+    setFilteredHackathons([...ongoingHackathons, ...closedHackathons]);
     setSortOption(option);
     setShowSortOptions(false);
   };
 
   return (
-    <div className="explore">
-      <div className="explore-header">
-        <h1>Explore Hackathons</h1>
-        <div className="sort-container">
-          <button className="sort-button" onClick={() => setShowSortOptions(!showSortOptions)}>
-            <i className="ri-sort-asc"></i> Sort
-          </button>
-          {showSortOptions && (
-            <div className="sort-options">
-              <div className={`sort-option ${sortOption === "nearest" ? "active" : ""}`} onClick={() => handleSort("nearest")}>
-                Upcoming Soon
-              </div>
-              <div className={`sort-option ${sortOption === "farthest" ? "active" : ""}`} onClick={() => handleSort("farthest")}>
-                Happening Later
-              </div>
-              <div className={`sort-option ${sortOption === "highestPrize" ? "active" : ""}`} onClick={() => handleSort("highestPrize")}>
-                Highest Prize Money
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="hackathon-list">
-        {filteredHackathons.slice(0, 9).map((hackathon) => (
-          <div key={hackathon.id} className="hackathon-card">
-            <img src={hackathon.posterUrl} alt="Poster" className="hackathon-poster" />
-            <div className="hackathon-details">
-              <h2>{hackathon.name}</h2>
-              <p><i className="ri-calendar-2-line"></i> {hackathon.date}</p>
-              <p><i className="ri-map-pin-2-line"></i> {hackathon.location}</p>
-              <p><i className="ri-trophy-fill" style={{ color: "#FFD700" }}></i> Prizes Worth <span className="prize-highlight">{hackathon.prize}</span></p>
-              <div className="status-container">
-                <span className={`status-dot ${getStatusClass(hackathon.date)}`}></span>
-                <span className={`status-text ${getStatusClass(hackathon.date)}`}>{getDaysLeftText(hackathon.date)}</span>
-                <a href={hackathon.website} className="participate-btn">Participate</a>
-              </div>
-            </div>
+    <main>
+      <Title />
+      <div className="explore">
+        <div className="explore-header">
+          <div className="explore-heading">
+            <h1>Explore Hackathons</h1>
+            <p>
+              Hackathons are great places to code quickly, learn collaboration
+              and celebrate your ideas. Start participating, winning hackathons
+              is actually easier if you have the{" "}
+              <Link to="/tools" className="strategy-link">
+                right strategy
+              </Link>
+            </p>
           </div>
-        ))}
+          <div className="sort-container">
+            <button
+              className="sort-button"
+              onClick={() => setShowSortOptions(!showSortOptions)}
+            >
+              <i className="ri-sort-asc"></i> Sort
+            </button>
+            {showSortOptions && (
+              <div className="sort-options">
+                <div
+                  className={sortOption === "nearest" ? "active" : ""}
+                  onClick={() => handleSort("nearest")}
+                >
+                  Upcoming Soon
+                </div>
+                <div
+                  className={sortOption === "farthest" ? "active" : ""}
+                  onClick={() => handleSort("farthest")}
+                >
+                  Happening Later
+                </div>
+                <div
+                  className={sortOption === "highestPrize" ? "active" : ""}
+                  onClick={() => handleSort("highestPrize")}
+                >
+                  Highest Prize Money
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="hackathon-list">
+          {filteredHackathons.slice(0, 9).map((hackathon) => {
+            const isClosed = new Date(hackathon.end) < new Date();
+            return (
+              <div
+                key={hackathon.id}
+                className="hackathon-card"
+                style={{ opacity: isClosed ? 0.7 : 1 }}
+              >
+                <img
+                  src={hackathon.posterUrl}
+                  alt="Poster"
+                  className="hackathon-poster"
+                />
+                <div className="hackathon-details">
+                  <h2>{hackathon.name}</h2>
+                  <p>
+                    <i className="ri-calendar-2-line"></i> {hackathon.date}
+                  </p>
+                  <p>
+                    <i className="ri-map-pin-2-line"></i> {hackathon.location}
+                  </p>
+                  <p>
+                    <i className="ri-trophy-line"></i> Prizes Worth{" "}
+                    <span className="prize-highlight">{hackathon.prize}</span>
+                  </p>
+                  <div className="status-container">
+                    <span
+                      className={`status-text ${getStatusClass(
+                        hackathon.end,
+                        isClosed
+                      )}`}
+                    >
+                      {isClosed
+                        ? "Registration Closed"
+                        : getDaysLeftText(hackathon.end)}
+                    </span>
+
+                    <a
+                      href={isClosed ? "#" : hackathon.website}
+                      className={`participate-btn ${isClosed ? "closed" : ""}`}
+                      style={{
+                        pointerEvents: isClosed ? "none" : "auto",
+                        backgroundColor: isClosed ? "#b5b5b5" : "#01b72f",
+                      }}
+                    >
+                      Participate
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        {filteredHackathons.length > 9 && (
+          <button className="view-more">View More</button>
+        )}
       </div>
-      {filteredHackathons.length > 9 && <button className="view-more">View More</button>}
-    </div>
+      <Footer />
+    </main>
   );
 };
 
-const getStatusClass = (date) => {
-  const daysLeft = (new Date(date) - new Date()) / (1000 * 60 * 60 * 24);
-  if (daysLeft > 10) return "green";
-  if (daysLeft >= 5) return "orange";
+const getStatusClass = (endDate, isClosed) => {
+  if (isClosed) return "grey";
+  const daysLeft = Math.ceil(
+    (new Date(endDate) - new Date()) / (1000 * 60 * 60 * 24)
+  );
+  if (daysLeft > 7) return "green";
+  if (daysLeft >= 3) return "orange";
   return "red";
 };
 
-const getDaysLeftText = (date) => {
-  const daysLeft = Math.ceil((new Date(date) - new Date()) / (1000 * 60 * 60 * 24));
-  return `${daysLeft} Days Left`;
+const getDaysLeftText = (endDate) => {
+  const daysLeft = Math.ceil(
+    (new Date(endDate) - new Date()) / (1000 * 60 * 60 * 24)
+  );
+  return `Registration Ends in ${daysLeft} Days`;
 };
 
 export default Explore;

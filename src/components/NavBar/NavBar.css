@@ -88,7 +88,7 @@
 }
 /* Explore */
 .nav-item.active[href="/explore"] {
-  color: #8000ff !important; 
+  color: #007bff !important; 
 }
 /* Tools */
 .nav-item.active[href="/tools"] {
