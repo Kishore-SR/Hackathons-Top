@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useUser, UserButton } from "@clerk/clerk-react";
-import "./Navbar.css";
+import "./NavBar.css";
 
 export const Navbar = () => {
   const location = useLocation();
