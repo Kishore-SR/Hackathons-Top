@@ -6,17 +6,19 @@ import Explore from "./pages/Explore/Explore";
 import {Tools} from "./pages/Tools/Tools";
 import { HelmetProvider } from "react-helmet-async";
 import Login from "./pages/Login";
+import Submit from "./pages/Submit/Submit"; 
 
 export const App = () => {
   return (
     <HelmetProvider>
       <Router>
         <div>
-          <Routes>
+        <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
-            <Route path="/tools" element={<Tools/>} />
+            <Route path="/tools" element={<Tools />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/submit" element={<Submit />} />  
           </Routes>
           <Navbar />
         </div>
