@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useUser, UserButton } from "@clerk/clerk-react";
 import "./Navbar.css";
 
 export const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isSignedIn, user } = useUser();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,10 +33,18 @@ export const Navbar = () => {
             <i className="ri-function-add-line"></i>
             <span>Tools</span>
           </Link>
-          <Link to="/profile" className={`nav-item ${location.pathname === "/profile" ? "active" : ""}`}>
-            <i className="ri-user-star-line"></i>
-            <span>Profile</span>
-          </Link>
+          {/* Profile Link (Dynamic based on login state) */}
+          {isSignedIn ? (
+            <div className="nav-item">
+              <UserButton />
+              <span>{user.firstName}</span>
+            </div>
+          ) : (
+            <div className="nav-item" onClick={() => navigate("/Login")}>
+              <i className="ri-user-star-line"></i>
+              <span>Profile</span>
+            </div>
+          )}
         </div>
       </nav>
 
@@ -51,10 +62,18 @@ export const Navbar = () => {
           <i className="ri-function-add-line"></i>
           <span>Tools</span>
         </Link>
-        <Link to="/profile" className={`nav-item ${location.pathname === "/profile" ? "active" : ""}`}>
-          <i className="ri-user-star-line"></i>
-          <span>Profile</span>
-        </Link>
+        {/* Profile Link (Dynamic based on login state) */}
+        {isSignedIn ? (
+          <div className="nav-item">
+            <UserButton />
+            <span>{user.firstName}</span>
+          </div>
+        ) : (
+          <div className="nav-item" onClick={() => navigate("/Login")}>
+            <i className="ri-user-star-line"></i>
+            <span>Profile</span>
+          </div>
+        )}
       </nav>
     </>
   );
