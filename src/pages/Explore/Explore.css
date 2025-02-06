@@ -173,12 +173,19 @@
 .view-more {
   display: block;
   margin: 20px auto;
-  padding: 10px 15px;
-  background: #01b72f;
+  padding: 8px 12px;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 14px;
   text-align: center;
+  background-color: #007bff;
+  transition: all 0.2s ease-in-out;
+}
+
+.view-more:hover {
+  background-color: #2bb1ff;
 }
 
 @media (max-width: 900px) {
@@ -345,7 +352,7 @@
     align-self: flex-start;
   }
 
-  .hackathon-list{
+  .hackathon-list {
     gap: 20px;
   }
   .hackathon-card {

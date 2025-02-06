@@ -14,10 +14,10 @@ export const Home = () => {
     <div className="home-container">
       {/* SEO Optimization */}
       <Helmet>
-        <title>Top Hackathons - Find, Plan and Win Hackathons in India</title>
+        <title>Top Hackathons - Galaxy of Hackathons</title>
         <meta
           name="description"
-          content="Discover top hackathons across India. Join to build projects, win prizes, and unlock new opportunities. Your one-stop platform for hackathon success."
+          content="Discover top hackathons across India. Join to build projects, win prizes and unlock new opportunities. Your one-stop platform for hackathon success."
         />
         <meta
           name="keywords"
@@ -34,7 +34,7 @@ export const Home = () => {
       </Helmet>
 
       {/* Header */}
-      <Title/>
+      <Title />
       <main>
         {/* Hero Section */}
         <section className="hero-section">
@@ -50,11 +50,7 @@ export const Home = () => {
             </Link>
           </div>
           <div className="right-content">
-            <img
-              src={flyingRocket}
-              alt="HERO"
-              className="cartoon-image"
-            />
+            <img src={flyingRocket} alt="HERO" className="cartoon-image" />
           </div>
         </section>
 
@@ -79,7 +75,7 @@ export const Home = () => {
         </section>
       </main>
 
-      <Footer/>
+      <Footer />
     </div>
   );
 };
@@ -88,20 +84,21 @@ const journeySteps = [
   {
     title: "Find Hackathons",
     description:
-      "Discover exciting hackathons that match your interests and skills",
+      "Explore hackathons that spark your creativity and send your ideas to new heights",
     image: step1,
     alt: "Find perfect hackathon matches",
   },
   {
     title: "Get Ready",
-    description: "Use our tools, tips and resources to get hackathon-ready",
+    description:
+      "Get ready with our tools and tips to launch your ideas into the universe of possibilities",
     image: step2,
     alt: "Prepare for hackathon success",
   },
   {
     title: "Build & Win",
     description:
-      "Create impactful projects, win prizes, and unlock new opportunities",
+      "Build projects, win prizes and let your idea take off as the next big startup in this galaxy!",
     image: step3,
     alt: "Win hackathon prizes",
   },

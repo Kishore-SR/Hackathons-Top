@@ -17,6 +17,7 @@ const Explore = () => {
   const [sortOption, setSortOption] = useState("nearest");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [visibleHackathons, setVisibleHackathons] = useState(9); // Show 9 initially
 
   useEffect(() => {
     const fetchHackathons = async () => {
@@ -81,6 +82,15 @@ const Explore = () => {
       navigate("/login");
     } else {
       window.open(hackathonUrl, "_blank");
+    }
+  };
+
+  // Function to load more hackathons
+  const handleViewMore = () => {
+    if (!isSignedIn) {
+      navigate("/login");
+    } else {
+      setVisibleHackathons(visibleHackathons + 9);
     }
   };
 
@@ -151,7 +161,7 @@ const Explore = () => {
           </div>
         ) : (
           <div className="hackathon-list">
-            {filteredHackathons.slice(0, 9).map((hackathon) => {
+            {filteredHackathons.slice(0, visibleHackathons).map((hackathon) => {
               const isClosed = new Date(hackathon.end) < new Date();
               return (
                 <div
@@ -206,8 +216,10 @@ const Explore = () => {
             })}
           </div>
         )}
-        {filteredHackathons.length > 9 && (
-          <button className="view-more">View More</button>
+        {filteredHackathons.length > visibleHackathons && (
+          <button className="view-more" onClick={handleViewMore}>
+            View More
+          </button>
         )}
       </div>
       <Footer />
