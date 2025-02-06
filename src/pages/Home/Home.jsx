@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import "./Home.css";
-import flyingRocket from "../../assets/astronaut/flying-rocket.gif";
+import flyingRocket from "../../assets/astronaut/hero.gif";
 import step1 from "../../assets/astronaut/searching.svg";
 import step2 from "../../assets/astronaut/all-resources.svg";
 import step3 from "../../assets/astronaut/winner.svg";
@@ -52,7 +52,7 @@ export const Home = () => {
           <div className="right-content">
             <img
               src={flyingRocket}
-              alt="Innovative Hackathon Projects"
+              alt="HERO"
               className="cartoon-image"
             />
           </div>

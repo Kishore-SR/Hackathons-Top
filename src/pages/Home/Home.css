@@ -249,6 +249,7 @@
   }
   .left-content h1 {
     font-size: 1.6rem;
+    margin-top: 0px;
   }
   .left-content h2 {
     font-size: 1rem;
@@ -276,6 +277,7 @@
   }
   .getting-started h2{
     font-size: 1.5rem;
+    margin-top: 0;
   }
   .secondary-button{
     margin-bottom:80px;

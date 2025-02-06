@@ -35,7 +35,7 @@ export const Navbar = () => {
           </Link>
           {/* Profile Link (Dynamic based on login state) */}
           {isSignedIn ? (
-            <div className="nav-item">
+            <div className="nav-item" style={{ display: "flex", alignItems: "center", gap: "5px" }}>
               <UserButton />
               <span>{user.firstName}</span>
             </div>
@@ -64,7 +64,7 @@ export const Navbar = () => {
         </Link>
         {/* Profile Link (Dynamic based on login state) */}
         {isSignedIn ? (
-          <div className="nav-item">
+          <div className="nav-item" style={{ display: "flex", alignItems: "center", gap: "0" }}>
             <UserButton />
             <span>{user.firstName}</span>
           </div>
