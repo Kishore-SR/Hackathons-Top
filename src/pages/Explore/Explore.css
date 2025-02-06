@@ -165,7 +165,7 @@
     left: 175%;
   }
 }
-.closed{
+.closed {
   border: none;
 }
 .view-more {
@@ -307,4 +307,59 @@
 .sort-options .active {
   background-color: #e0e0e0;
   font-weight: bold;
+}
+.extra-text {
+  display: inline;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 767px) {
+  .explore {
+    padding: 0px;
+    max-width: 90vw;
+  }
+  .explore-header {
+    margin-top: 20%;
+    margin-bottom: 10px;
+    flex-direction: column;
+  }
+  .explore-heading {
+    width: 100%;
+    align-self: flex-start;
+    margin-bottom: -10px;
+  }
+  .explore-heading h1 {
+    font-size: 1.34rem;
+  }
+  .explore-heading p {
+    margin: 4px 0px;
+    font-size: 0.82rem;
+  }
+  .extra-text {
+    display: none;
+  }
+  .sort-container {
+    align-self: flex-start;
+  }
+
+  .hackathon-list{
+    gap: 20px;
+  }
+  .hackathon-card {
+    padding: 8px;
+  }
+  .hackathon-poster {
+    height: max-content;
+  }
+  .hackathon-details h2 {
+    font-size: 18px;
+    margin: 2px 0px;
+  }
+  .status-container {
+    padding-top: 4px;
+  }
+  .status-text {
+    font-size: 0.82rem;
+  }
+  
 }

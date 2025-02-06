@@ -81,13 +81,17 @@ const Explore = () => {
             <h1>Explore Hackathons</h1>
             <p>
               Hackathons are great places to code quickly, learn collaboration
-              and celebrate your ideas. Start participating, winning hackathons
-              is actually easier if you have the{" "}
-              <Link to="/tools" className="strategy-link">
-                right strategy
-              </Link>
+              and celebrate your ideas.
+              <span className="extra-text">
+                Start participating, winning hackathons is actually easier if
+                you have the{" "}
+                <Link to="/tools" className="strategy-link">
+                  right strategy.
+                </Link>
+              </span>
             </p>
           </div>
+
           <div className="sort-container">
             <button
               className="sort-button"
@@ -157,7 +161,7 @@ const Explore = () => {
                         : getDaysLeftText(hackathon.end)}
                     </span>
 
-                    <a
+                    <a target="_blank" rel="noreferrer"
                       href={isClosed ? "#" : hackathon.website}
                       className={`participate-btn ${isClosed ? "closed" : ""}`}
                       style={{
