@@ -5,6 +5,7 @@ import "./Explore.css";
 import { Link } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { Title } from "../../components/Title/Title";
+import { Helmet } from "react-helmet-async";
 
 const Explore = () => {
   const [hackathons, setHackathons] = useState([]);
@@ -74,6 +75,20 @@ const Explore = () => {
 
   return (
     <main>
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Explore | Hackathons.top</title>
+        <meta
+          name="description"
+          content="Find the best hackathons happening near you. Hackathons are great places to code quickly, learn collaboration, and celebrate your ideas. Start participating and improve your skills."
+        />
+        <meta name="author" content="Kishore S R" />
+        <meta
+          name="keywords"
+          content="hackathons, coding, programming, tech events, coding competition, software development, hackathons in Bengaluru, hackathons in Karnataka, engineering hackathons, student hackathons, tech competitions, coding competitions, Bangalore hackathons, hackathon events, developer hackathons, programming contests"
+        />
+      </Helmet>
+
       <Title />
       <div className="explore">
         <div className="explore-header">
@@ -161,7 +176,9 @@ const Explore = () => {
                         : getDaysLeftText(hackathon.end)}
                     </span>
 
-                    <a target="_blank" rel="noreferrer"
+                    <a
+                      target="_blank"
+                      rel="noreferrer"
                       href={isClosed ? "#" : hackathon.website}
                       className={`participate-btn ${isClosed ? "closed" : ""}`}
                       style={{

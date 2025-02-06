@@ -14,14 +14,14 @@ export const Home = () => {
     <div className="home-container">
       {/* SEO Optimization */}
       <Helmet>
-        <title>Top Hacks - Find, Plan and Win Hackathons in India</title>
+        <title>Top Hackathons - Find, Plan and Win Hackathons in India</title>
         <meta
           name="description"
           content="Discover top hackathons across India. Join to build projects, win prizes, and unlock new opportunities. Your one-stop platform for hackathon success."
         />
         <meta
           name="keywords"
-          content="hackathons, india hackathons, coding competitions, tech events, student hackathons, engineering hackathons"
+          content="hackathons, india hackathons, coding competitions, tech events, student hackathons, engineering hackathons, hackathons in Bengaluru, hackathons in Karnataka, engineering hackathons, student hackathons, tech competitions, coding competitions, Bangalore hackathons, hackathon events, developer hackathons, programming contests, hackathon platform, hackathon projects, hackathon ideas, hackathon tools, hackathon resources, hackathon success, hackathon tips, hackathon prizes, hackathon winners, hackathon projects, hackathon community, hackathon network, hackathon opportunities, hackathon challenges, hackathon solutions, hackathon sponsors, hackathon partners, hackathon collaborations, hackathon registrations, hackathon schedules, hackathon dates, hackathon deadlines, hackathon results, hackathon rankings, hackathon feedback, hackathon reviews, hackathon ratings, hackathon experiences, hackathon stories, hackathon journeys, hackathon adventures, hackathon explorations, hackathon discoveries, hackathon innovations, hackathon creations, hackathon inventions, hackathon inspirations, hackathon motivations, hackathon aspirations, hackathon dreams, hackathon visions, hackathon missions, hackathon goals, hackathon objectives, hackathon purposes, hackathon values, hackathon beliefs, hackathon principles, hackathon practices, hackathon disciplines, hackathon learnings, hackathon teachings, hackathon trainings, hackathon educations, hackathon developments, hackathon progress, hackathon growth, hackathon success, hackathon achievements, hackathon victories, hackathon celebrations, hackathon experiences, hackathon stories, hackathon journeys, hackathon adventures, hackathon explorations, hackathon discoveries, hackathon innovations, hackathon creations, hackathon inventions, hackathon inspirations, hackathon motivations, hackathon aspirations, hackathon dreams, hackathon visions, hackathon missions, hackathon goals, hackathon objectives, hackathon purposes, hackathon values, hackathon beliefs, hackathon principles, hackathon practices, hackathon disciplines, hackathon learnings, hackathon teachings, hackathon trainings, hackathon educations, hackathon developments, hackathon progress, hackathon growth, hackathon success, hackathon achievements, hackathon victories, hackathon celebrations"
         />
         <meta
           property="og:title"
