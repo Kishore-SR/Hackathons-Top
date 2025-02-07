@@ -1,0 +1,43 @@
+.legal-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.legal-container h1,
+.legal-container h2 {
+  color: #333;
+}
+
+.legal-container p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.legal-container ul {
+  padding-left: 20px;
+}
+
+.last-updated {
+  font-style: italic;
+  color: #777;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .legal-container {
+    margin-bottom: 14%;
+  }
+  .legal-container h2 {
+    color: #504d4d;
+    font-size: 1.2rem;
+  }
+
+  .legal-container p,
+  .legal-container ul {
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.9rem;
+  }
+}

@@ -8,6 +8,8 @@ import { HelmetProvider } from "react-helmet-async";
 import Login from "./pages/Login";
 import Submit from "./pages/Submit/Submit"; 
 import { About } from "./pages/About/About";
+import PrivacyPolicy from "./pages/Legal/PrivacyPolicy";
+import TermsOfService from "./pages/Legal/TermsOfService";
 
 export const App = () => {
   return (
@@ -21,6 +23,8 @@ export const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/submit" element={<Submit />} />  
             <Route path="/about" element={<About />} />  
+            <Route path="/privacy" element={<PrivacyPolicy />} />  
+            <Route path="/terms" element={<TermsOfService />} />  
           </Routes>
           <Navbar />
         </div>
