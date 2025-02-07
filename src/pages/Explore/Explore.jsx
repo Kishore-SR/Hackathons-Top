@@ -232,9 +232,9 @@ const getStatusClass = (endDate, isClosed) => {
   const daysLeft = Math.ceil(
     (new Date(endDate) - new Date()) / (1000 * 60 * 60 * 24)
   );
-  if (daysLeft > 7) return "green";
-  if (daysLeft >= 4) return "orange";
-  return "red";
+  if (daysLeft > 7) return "egreen";
+  if (daysLeft >= 4) return "eorange";
+  return "ered";
 };
 
 const getDaysLeftText = (endDate) => {

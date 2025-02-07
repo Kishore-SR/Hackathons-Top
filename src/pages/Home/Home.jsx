@@ -69,8 +69,8 @@ export const Home = () => {
               </div>
             ))}
           </div>
-          <Link to="/tools" className="secondary-button">
-            Our Features
+          <Link to="/about" className="secondary-button">
+            My Story
           </Link>
         </section>
       </main>

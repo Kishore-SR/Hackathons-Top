@@ -60,7 +60,7 @@
 .cta-button {
   background: var(--black);
   color: white;
-  padding: 10px 22px;
+  padding: 8px 18px;
   border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
@@ -73,7 +73,7 @@
 }
 
 .cta-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 
 .cta-button::before {
@@ -81,12 +81,12 @@
   position: absolute;
   top: 0;
   left: -75%;
-  width: 46%;
+  width: 35%;
   height: 100%;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.15),
     transparent
   );
   transform: skewX(-40deg);

@@ -98,15 +98,15 @@
   font-weight: 500;
 }
 
-.status-text.green {
+.status-text.egreen {
   color: rgb(26, 214, 26);
 }
 
-.status-text.orange {
+.status-text.eorange {
   color: orange;
 }
 
-.status-text.red {
+.status-text.ered {
   color: red;
 }
 

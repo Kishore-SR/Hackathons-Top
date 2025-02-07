@@ -47,8 +47,8 @@ export const Footer = () => {
         <div className="footer-links">
           <section className="left-links">
             <p>
-              <Link to="/story" className="footer-link">
-                Story
+              <Link to="/about" className="footer-link">
+                About
               </Link>
             </p>
             <p>

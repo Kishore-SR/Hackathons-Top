@@ -1,0 +1,76 @@
+.about-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .page-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .about-container h2 {
+    margin-bottom: 10px;
+  }
+  
+  /* Rainbow theme colors */
+  .red { background: #ffe5e5; }
+  .orange { background: #ffeacc; }
+  .yellow { background: #fff8cc; }
+  .green { background: #e6f8e0; }
+  .blue { background: #e0f0ff; }
+  .purple { background: #f3e5ff; }
+  .cyan { background: #e0ffff; }
+  
+  /* Highlight text */
+  .highlight {
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .about-container .red .highlight { background: #ffcccc; color: #b30000; }
+  .about-container .orange .highlight { background: #ffd699; color: #cc6600; }
+  .about-container .yellow .highlight { background: #ffec99; color: #b38f00; }
+  .about-container .green .highlight { background: #c6e6c2; color: #006600; }
+  .about-container .blue .highlight { background: #99ccff; color: #0047b3; }
+  .about-container .purple .highlight { background: #d9b3ff; color: #660099; }
+  .about-container .cyan .highlight { background: #ccffff; color: #009999; }
+  
+  /* Link styling */
+  .cyan-link {
+    color: #008b8b;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 2px solid #008b8b;
+    padding-bottom: 2px;
+  }
+  
+  .cyan-link:hover {
+    color: #005f5f;
+    border-bottom: 2px solid #005f5f;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .about-container {
+      padding: 10px;
+    }
+  
+    .about-container h2 {
+      font-size: 1.3rem;
+    }
+  
+    .about-container p, li {
+      font-size: 1rem;
+    }
+  }
+  
