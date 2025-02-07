@@ -2,10 +2,30 @@ import React from "react";
 import "./About.css";
 import logo from "../../assets/icons/Top-Hackathons.svg";
 import { Title } from "../../components/Title/Title";
+import { Helmet } from "react-helmet-async";
 
 export const About = () => {
   return (
     <>
+    <Helmet>
+        <title>About | Top Hackathons</title>
+        <meta
+          name="description"
+          content="Hackathons.top is a one-stop platform to discover, participate, and win hackathons. Explore hackathons from all sources, plan better, and launch your ideas!"
+        />
+        <meta
+          name="keywords"
+          content="hackathons, hackathon finder, student hackathons, coding competitions, tech events, hackathons India, online hackathons, engineering projects"
+        />
+        <meta property="og:title" content="About | Hackathons.top" />
+        <meta
+          property="og:description"
+          content="Hackathons.top helps students discover and participate in hackathons easily. A platform built by an engineering student for students!"
+        />
+        <meta property="og:url" content="https://hackathons.top/about" />
+        <link rel="canonical" href="https://hackathons.top/about" />
+      </Helmet>
+
     <Title/>
     <div className="about-container">
       <h1 className="page-title">About</h1>

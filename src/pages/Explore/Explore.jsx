@@ -97,7 +97,7 @@ const Explore = () => {
   return (
     <main>
       <Helmet>
-        <title>Explore | Hackathons.top</title>
+        <title>Explore | Top Hackathons</title>
         <meta
           name="description"
           content="Find the best hackathons happening near you. Hackathons are great places to code quickly, learn collaboration, and celebrate your ideas."
