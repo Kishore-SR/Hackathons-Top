@@ -70,7 +70,7 @@ export const Home = () => {
             ))}
           </div>
           <Link to="/about" className="secondary-button">
-            My Story
+            Our Story
           </Link>
         </section>
       </main>

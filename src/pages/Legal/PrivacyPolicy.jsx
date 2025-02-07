@@ -1,11 +1,21 @@
 import React from "react";
 import "./LegalPages.css";
 import { Title } from "../../components/Title/Title";
+import { Helmet } from "react-helmet-async";
 
 const PrivacyPolicy = () => {
   return (
     <>
-    <Title/>
+      <Helmet>
+        <title>Privacy | Top Hackathons</title>
+        <meta
+          name="description"
+          content="Find the best hackathons happening near you. Hackathons are great places to code quickly, learn collaboration, and celebrate your ideas."
+        />
+        <meta name="author" content="Kishore S R" />
+      </Helmet>
+
+      <Title />
       <div className="legal-container">
         <h1>Privacy Policy</h1>
         <p className="last-updated">Last updated: February 2025</p>
