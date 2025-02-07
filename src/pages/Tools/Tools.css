@@ -1,5 +1,92 @@
 .tools-container {
-    padding: 20px;
-    margin-top: 60px; /* To avoid overlap with navbar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.tools-content {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.tools-img {
+  width: 100%;
+  max-width: 350px;
+  object-fit: contain;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  background-color: #f9f9f9; 
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: max-content;
+  margin: auto;
+}
+
+.timer {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.time {
+  text-align: center;
+  padding: 8px;
+  min-width: 60px;
+  border: 1px solid #ccc; 
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.time p {
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+  color: #333; 
+}
+
+.time span {
+  font-size: 12px;
+  color: #777; 
+}
+
+.unlocking-text {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(252, 214, 118);
+}
+
+@media (max-width: 600px) {
+  .tools-img {
+    max-width: 250px;
   }
-  
+
+  .timer {
+    gap: 10px;
+  }
+
+  .time {
+    min-width: 50px;
+    padding: 6px;
+  }
+
+  .time p {
+    font-size: 16px;
+  }
+
+  .time span {
+    font-size: 10px;
+  }
+
+  .unlocking-text {
+    font-size: 14px;
+  }
+}

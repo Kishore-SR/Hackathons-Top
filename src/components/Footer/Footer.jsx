@@ -57,8 +57,8 @@ export const Footer = () => {
               </Link>
             </p>
             <p>
-              <Link to="/blogs" className="footer-link">
-                Blogs
+              <Link to="/tools" className="footer-link">
+                Tools
               </Link>
             </p>
             <p>
