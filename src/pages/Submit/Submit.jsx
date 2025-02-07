@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import "./Submit.css";
-import logo from "/logo.svg";
+import medal from "/medal.svg";
 import { Helmet } from "react-helmet-async";
 
 const Submit = () => {
@@ -76,14 +76,13 @@ const Submit = () => {
           name="twitter:description"
           content="Submit your hackathon to Hackathons.top and help students find and participate in hackathons."
         />
-        <meta name="twitter:image" content="/path/to/your/image.jpg" />
       </Helmet>
 
       <div className="submit-page">
         <div className="banner-img"></div>
 
         <div className="form-container">
-          <img src={logo} alt="Hackathons.top Logo" className="form-logo" />
+          <img src={medal} alt="medal" className="form-logo" />
           <h2>
             List your hackathon on{" "}
             <a

@@ -320,7 +320,9 @@
 .extra-text {
   display: inline;
 }
-
+.strategy-link{
+  text-decoration: underline;
+}
 /* Responsive Design for Mobile */
 @media (max-width: 767px) {
   .explore {

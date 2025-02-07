@@ -111,15 +111,15 @@ const Explore = () => {
           <div className="explore-heading">
             <h1>Explore Hackathons</h1>
             <p>
-              Hackathons are great places to code quickly, learn collaboration
-              and celebrate your ideas.
+              In this galaxy of hackathons, you are the astronaut - find
+              your stars and launch your ideas into orbit.
               <span className="extra-text">
-                Start participating, winning hackathons is actually easier if
-                you have the{" "}
-                <Link to="/tools" className="strategy-link">
-                  right strategy.
+                Your journey to victory begins now! Submit a hackathon and
+                help fellow explorers discover new opportunities. 
+              </span>{" "}
+              <Link to="/submit" className="strategy-link">
+                  Submit Hackathon
                 </Link>
-              </span>
             </p>
           </div>
 
@@ -199,7 +199,9 @@ const Explore = () => {
                       </span>
 
                       <button
-                        className={`participate-btn ${isClosed ? "closed" : ""}`}
+                        className={`participate-btn ${
+                          isClosed ? "closed" : ""
+                        }`}
                         style={{
                           backgroundColor: isClosed ? "#b5b5b5" : "#01b72f",
                         }}
