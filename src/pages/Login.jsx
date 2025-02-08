@@ -18,7 +18,7 @@ export default function Login() {
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "70px" }}
       >
-        <SignIn unsafe_disableDevelopmentModeWarnings={true}/>
+        <SignIn />
       </div>
     </>
   );
