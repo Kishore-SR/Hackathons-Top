@@ -16,8 +16,8 @@ export default defineConfig({
         description: "Explore and participate in hackathons easily.",
         start_url: "/",
         display: "standalone",
-        background_color: "#58bf43",
-        theme_color: "#ffffff",
+        background_color: "#eee9e9",
+        theme_color: "#eee9e9",
         icons: [
           {
             src: "/icon-192x192.png",
