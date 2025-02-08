@@ -10,6 +10,7 @@ import Submit from "./pages/Submit/Submit";
 import { About } from "./pages/About/About";
 import PrivacyPolicy from "./pages/Legal/PrivacyPolicy";
 import TermsOfService from "./pages/Legal/TermsOfService";
+import NotFound from "./pages/NotFound/NotFound";
 
 export const App = () => {
   return (
@@ -24,7 +25,8 @@ export const App = () => {
             <Route path="/submit" element={<Submit />} />  
             <Route path="/about" element={<About />} />  
             <Route path="/privacy" element={<PrivacyPolicy />} />  
-            <Route path="/terms" element={<TermsOfService />} />  
+            <Route path="/terms" element={<TermsOfService />} /> 
+            <Route path="*" element={<NotFound />} /> 
           </Routes>
           <Navbar />
         </div>

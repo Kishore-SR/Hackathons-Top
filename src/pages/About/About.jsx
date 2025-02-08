@@ -45,7 +45,7 @@ export const About = () => {
         <p>
           Many engineering students{" "}
           <span className="highlight orange">never hear about hackathons</span>{" "}
-          happening in their cities or colleges. The big platforms {" "}
+          happening in their cities. The big platforms {" "}
           <span className="highlight orange">Devfolio, Unstop</span> focus on
           their own events, but what about the countless college-hosted
           hackathons? They remain{" "}
