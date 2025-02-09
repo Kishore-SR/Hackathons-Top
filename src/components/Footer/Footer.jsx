@@ -27,7 +27,7 @@ export const Footer = () => {
             </div>
             <div className="wa-link">
               <a
-                href="https://www.whatsapp.com/"
+                href="https://whatsapp.com/channel/0029VazgcfQ6buMRvpvZ2y1V"
                 target="_blank"
                 rel="noopener noreferrer"
               >

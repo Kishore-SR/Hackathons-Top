@@ -128,7 +128,7 @@ export const About = () => {
         <p>
           Join our{" "}
           <a
-            href="YOUR_WHATSAPP_CHANNEL_LINK"
+            href="https://whatsapp.com/channel/0029VazgcfQ6buMRvpvZ2y1V"
             target="_blank"
             rel="noopener noreferrer"
             className="cyan-link"
