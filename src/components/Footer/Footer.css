@@ -63,7 +63,7 @@
   display: flex;
   gap: 1px;
 }
-.social-icons a::before {
+.ksr-link a::before {
   content: "";
   position: absolute;
   top: 0;
@@ -73,7 +73,7 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(230, 255, 6, 0.2),
+    rgba(230, 255, 6, 0.24),
     transparent
   );
   transform: skewX(-40deg);
@@ -92,15 +92,42 @@
   background-color: #fae633f8;
 }
 
-.wa-link a {
-  background-color: #04cc36;
+.linkedin-link a {
+  background-color: #0077B5;
   color: #fff;
   display: flex;
   gap: 2px;
 }
+.linkedin-link a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(103, 202, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-40deg);
+  animation: shine 3s infinite linear;
+}
 
-.wa-link a:hover {
-  background-color: #01da50;
+@keyframes shine {
+  from {
+    left: -75%;
+  }
+  to {
+    left: 175%;
+  }
+}
+.ksr-link a:hover {
+  background-color: #fae633f8;
+}
+.linkedin-link a:hover {
+  background-color: #0077B5;
 }
 
 .icon {

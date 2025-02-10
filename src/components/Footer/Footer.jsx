@@ -25,13 +25,13 @@ export const Footer = () => {
                 <i class="ri-flashlight-fill"></i>Built by KSR
               </a>
             </div>
-            <div className="wa-link">
+            <div className="linkedin-link">
               <a
-                href="https://whatsapp.com/channel/0029VazgcfQ6buMRvpvZ2y1V"
+                href="https://linkedin.com/in/kishore-sr"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i class="ri-whatsapp-fill"></i>WhatsApp
+                <i class="ri-linkedin-box-fill"></i>LinkedIn
               </a>
             </div>
           </div>
