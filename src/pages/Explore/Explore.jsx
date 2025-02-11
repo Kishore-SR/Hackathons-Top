@@ -69,12 +69,19 @@ const Explore = () => {
           parseInt(b.prize.replace(/[^0-9]/g, "")) -
           parseInt(a.prize.replace(/[^0-9]/g, ""))
       );
+    } else if (option === "recentlyAdded") {
+      ongoingHackathons.sort((a, b) => {
+        const numA = parseInt(a.id.split("_")[0]);
+        const numB = parseInt(b.id.split("_")[0]);
+        return numB - numA;
+      });
     }
 
     setFilteredHackathons([...ongoingHackathons, ...closedHackathons]);
     setSortOption(option);
     setShowSortOptions(false);
   };
+
 
   const handleParticipateClick = (isClosed, hackathonUrl) => {
     if (isClosed) return;
@@ -149,6 +156,12 @@ const Explore = () => {
                   onClick={() => handleSort("highestPrize")}
                 >
                   Highest Prize Money
+                </div>
+                <div
+                  className={sortOption === "recentlyAdded" ? "active" : ""}
+                  onClick={() => handleSort("recentlyAdded")}
+                >
+                  Recently Added
                 </div>
               </div>
             )}
