@@ -374,3 +374,37 @@
     font-size: 0.82rem;
   }
 }
+
+.hackathon-count {
+  display: flex;
+  justify-content: center; 
+  margin: 10px auto;
+}
+
+.bgcolour {
+  display: inline-flex; 
+  align-items: center;
+  background-color: #e0f2ff; 
+  color: #0077cc;
+  border-radius: 10px;
+  gap: 8px;
+  font-size: 1rem;
+  padding: 6px 8px;
+  font-weight: 500;
+  height: 20px;
+}
+
+.blink-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #0077cc; 
+  border-radius: 50%;
+  display: inline-block;
+  animation: blink 1.5s infinite ease-in-out; 
+}
+
+@keyframes blink {
+  0% { background-color: #0077cc; }
+  50% { background-color: #88ccfd; }
+  100% { background-color: #0077cc; } 
+}

@@ -82,7 +82,6 @@ const Explore = () => {
     setShowSortOptions(false);
   };
 
-
   const handleParticipateClick = (isClosed, hackathonUrl) => {
     if (isClosed) return;
     if (!isSignedIn) {
@@ -101,6 +100,24 @@ const Explore = () => {
     }
   };
 
+  const totalHackathons = 20;
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!loading) {
+      // Start animation only after loading completes
+      setCount(0);
+      let start = 0;
+      const interval = setInterval(() => {
+        start += 1;
+        setCount(start);
+        if (start >= totalHackathons) clearInterval(interval);
+      }, 50); // Speed of animation
+
+      return () => clearInterval(interval);
+    }
+  }, [loading]);
+
   return (
     <main>
       <Helmet>
@@ -118,15 +135,15 @@ const Explore = () => {
           <div className="explore-heading">
             <h1>Explore Hackathons</h1>
             <p>
-              In this galaxy of hackathons, you are the astronaut - find
-              your stars and launch your ideas into orbit.
+              In this galaxy of hackathons, you are the astronaut - find your
+              stars and launch your ideas into orbit.
               <span className="extra-text">
-                Your journey to victory begins now! Submit a hackathon and
-                help fellow explorers discover new opportunities. 
+                Your journey to victory begins now! Submit a hackathon and help
+                fellow explorers discover new opportunities.
               </span>{" "}
               <Link to="/submit" className="strategy-link">
-                  Submit Hackathon
-                </Link>
+                Submit Hackathon
+              </Link>
             </p>
           </div>
 
@@ -173,63 +190,82 @@ const Explore = () => {
             <Loading />
           </div>
         ) : (
-          <div className="hackathon-list">
-            {filteredHackathons.slice(0, visibleHackathons).map((hackathon) => {
-              const isClosed = new Date(hackathon.end) < new Date();
-              return (
-                <div
-                  key={hackathon.id}
-                  className="hackathon-card"
-                  style={{ opacity: isClosed ? 0.7 : 1 }}
-                >
-                  <img
-                    src={hackathon.posterUrl}
-                    alt="Poster"
-                    className="hackathon-poster"
-                  />
-                  <div className="hackathon-details">
-                    <h2>{hackathon.name}</h2>
-                    <p>
-                      <i className="ri-calendar-2-line"></i> {hackathon.date}
-                    </p>
-                    <p>
-                      <i className="ri-map-pin-2-line"></i> {hackathon.location}
-                    </p>
-                    <p>
-                      <i className="ri-trophy-line"></i> Prizes Worth{" "}
-                      <span className="prize-highlight">{hackathon.prize}</span>
-                    </p>
-                    <div className="status-container">
-                      <span
-                        className={`status-text ${getStatusClass(
-                          hackathon.end,
-                          isClosed
-                        )}`}
-                      >
-                        {isClosed
-                          ? "Registration Closed"
-                          : getDaysLeftText(hackathon.end)}
-                      </span>
+          <>
+            {/* Animated Hackathons Count */}
+            <div className="hackathon-count">
+              <div className="bgcolour">
+                <span className="blink-dot"></span>
+                <p>{count}+ Hackathons added recently </p>
+              </div>
+            </div>
 
-                      <button
-                        className={`participate-btn ${
-                          isClosed ? "closed" : ""
-                        }`}
-                        style={{
-                          backgroundColor: isClosed ? "#b5b5b5" : "#01b72f",
-                        }}
-                        onClick={() =>
-                          handleParticipateClick(isClosed, hackathon.website)
-                        }
-                      >
-                        Participate
-                      </button>
+            <div className="hackathon-list">
+              {filteredHackathons
+                .slice(0, visibleHackathons)
+                .map((hackathon) => {
+                  const isClosed = new Date(hackathon.end) < new Date();
+                  return (
+                    <div
+                      key={hackathon.id}
+                      className="hackathon-card"
+                      style={{ opacity: isClosed ? 0.7 : 1 }}
+                    >
+                      <img
+                        src={hackathon.posterUrl}
+                        alt="Poster"
+                        className="hackathon-poster"
+                      />
+                      <div className="hackathon-details">
+                        <h2>{hackathon.name}</h2>
+                        <p>
+                          <i className="ri-calendar-2-line"></i>{" "}
+                          {hackathon.date}
+                        </p>
+                        <p>
+                          <i className="ri-map-pin-2-line"></i>{" "}
+                          {hackathon.location}
+                        </p>
+                        <p>
+                          <i className="ri-trophy-line"></i> Prizes Worth{" "}
+                          <span className="prize-highlight">
+                            {hackathon.prize}
+                          </span>
+                        </p>
+                        <div className="status-container">
+                          <span
+                            className={`status-text ${getStatusClass(
+                              hackathon.end,
+                              isClosed
+                            )}`}
+                          >
+                            {isClosed
+                              ? "Registration Closed"
+                              : getDaysLeftText(hackathon.end)}
+                          </span>
+
+                          <button
+                            className={`participate-btn ${
+                              isClosed ? "closed" : ""
+                            }`}
+                            style={{
+                              backgroundColor: isClosed ? "#b5b5b5" : "#01b72f",
+                            }}
+                            onClick={() =>
+                              handleParticipateClick(
+                                isClosed,
+                                hackathon.website
+                              )
+                            }
+                          >
+                            Participate
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                  );
+                })}
+            </div>
+          </>
         )}
         {filteredHackathons.length > visibleHackathons && (
           <button className="view-more" onClick={handleViewMore}>
