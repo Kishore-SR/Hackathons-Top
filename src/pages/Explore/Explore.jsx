@@ -195,7 +195,7 @@ const Explore = () => {
             <div className="hackathon-count">
               <div className="bgcolour">
                 <span className="blink-dot"></span>
-                <p>{count}+ Hackathons added few h </p>
+                <p>{count}+ Hackathons added recently </p>
               </div>
             </div>
 
