@@ -435,3 +435,30 @@
   border-color: #01b72f;
 }
 
+/* Responsive Design for Mobile */
+@media (max-width: 767px) {
+  .state-filters {
+    gap: 6px;
+    margin: 16px 0;
+    overflow-x: auto; 
+    flex-wrap: nowrap; 
+    padding-bottom: 10px; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+  }
+
+  .state-filters::-webkit-scrollbar {
+    display: none; 
+  }
+
+  .state-filter {
+    flex: 0 0 auto;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    color: #5f5e5e;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+}
