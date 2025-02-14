@@ -18,6 +18,8 @@ const Explore = () => {
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [loading, setLoading] = useState(true);
   const [visibleHackathons, setVisibleHackathons] = useState(9); // Show 9 initially
+  const [states, setStates] = useState([]); // State for storing state filters
+  const [selectedState, setSelectedState] = useState(null); // State for selected filter
 
   useEffect(() => {
     const fetchHackathons = async () => {
@@ -26,6 +28,26 @@ const Explore = () => {
       querySnapshot.forEach((doc) => {
         hackathonList.push({ id: doc.id, ...doc.data() });
       });
+
+      // Count state occurrences
+      const stateCounts = {};
+      hackathonList.forEach((hackathon) => {
+        const state = hackathon.state || "Online"; // Default to "Online" if state is missing
+        stateCounts[state] = (stateCounts[state] || 0) + 1;
+      });
+
+      // Convert to array and sort by count
+      const sortedStates = Object.keys(stateCounts).sort(
+        (a, b) => stateCounts[b] - stateCounts[a]
+      );
+
+      // Format states with counts
+      const formattedStates = sortedStates.map((state) => ({
+        name: state,
+        count: stateCounts[state],
+      }));
+
+      setStates(formattedStates);
 
       let ongoingHackathons = [];
       let closedHackathons = [];
@@ -49,6 +71,27 @@ const Explore = () => {
 
     fetchHackathons();
   }, []);
+
+  // Function to handle state filter click
+  const handleStateFilter = (state) => {
+    if (!isSignedIn) {
+      navigate("/login"); // Redirect to login if not signed in
+      return;
+    }
+
+    if (selectedState === state) {
+      // If the same state is clicked again, reset the filter
+      setSelectedState(null);
+      setFilteredHackathons(hackathons);
+    } else {
+      // Filter hackathons by the selected state
+      setSelectedState(state);
+      const filtered = hackathons.filter(
+        (hackathon) => hackathon.state === state
+      );
+      setFilteredHackathons(filtered);
+    }
+  };
 
   const handleSort = (option) => {
     let sortedHackathons = [...hackathons];
@@ -197,6 +240,21 @@ const Explore = () => {
                 <span className="blink-dot"></span>
                 <p>{count}+ Hackathons added recently </p>
               </div>
+            </div>
+
+            {/* State Filters */}
+            <div className="state-filters">
+              {states.map((state) => (
+                <button
+                  key={state.name}
+                  className={`state-filter ${
+                    selectedState === state.name ? "active" : ""
+                  }`}
+                  onClick={() => handleStateFilter(state.name)}
+                >
+                  {state.name} ({state.count})
+                </button>
+              ))}
             </div>
 
             <div className="hackathon-list">
