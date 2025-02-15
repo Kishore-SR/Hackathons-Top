@@ -21,7 +21,7 @@
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
 }
 .explore-heading p {
-  font-size: 1rem;
+  font-size: 0.98rem;
   margin: 10px 0px;
   color: #423e3e;
 }
@@ -57,7 +57,7 @@
 }
 
 .hackathon-details h2 {
-  font-size: 18px;
+  font-size: 1.1rem;
   margin: 8px 0px;
   color: #5f5e5e;
   text-align: left;
@@ -67,6 +67,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  /* font-size: 0.8rem; */
   font-size: 14px;
   margin: 5px 0;
 }
