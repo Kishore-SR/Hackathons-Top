@@ -235,12 +235,12 @@ const Explore = () => {
         ) : (
           <>
             {/* Animated Hackathons Count */}
-            <div className="hackathon-count">
+            {/* <div className="hackathon-count">
               <div className="bgcolour">
                 <span className="blink-dot"></span>
                 <p>{count}+ Hackathons added recently </p>
               </div>
-            </div>
+            </div> */}
 
             {/* State Filters */}
             <div className="state-filters">
