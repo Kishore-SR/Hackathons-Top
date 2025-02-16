@@ -81,6 +81,7 @@ export default function Tools() {
 
         {/* Cards Section */}
         <div className="cards-container">
+<<<<<<< HEAD
           {cards.map((card) => (
             <a key={card.id} href={card.link} target="_blank" rel="noopener noreferrer" className="card-link">
               <div className="card">
@@ -96,6 +97,33 @@ export default function Tools() {
               </div>
             </a>
           ))}
+=======
+          {cards.length > 0 ? (
+            cards.map((card) => (
+              <a
+                key={card.id}
+                href={card.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-link"
+              >
+                <div className="card">
+                  <div className="card-left">
+                    <img src={card.gif} alt="GIF" className="card-gif" />
+                  </div>
+                  <div className="card-right">
+                    <h3 className="card-title">
+                      {card.title} <i className="ri-arrow-right-up-line"></i>
+                    </h3>
+                    <p className="card-description">{card.description}</p>
+                  </div>
+                </div>
+              </a>
+            ))
+          ) : (
+            <h2 className="coming-soon">🚀 Coming Soon! 🚀</h2>
+          )}
+>>>>>>> 075de81 (update: Tools page)
         </div>
       </div>
     </div>
