@@ -16,13 +16,11 @@ const cards = [
     description: "Discover top hackathon projects that have won before!",
     link: "https://github.com/Olanetsoft/awesome-hackathon-projects",
   },
-
   {
     id: 2,
     gif: proGif,
     title: "Canva Premium",
-    description:
-      "To design high quality PPTs for your idea submissions.",
+    description: "To design high quality PPTs for your idea submissions.",
     link: "https://whatsapp.com/channel/0029Va8PdHQ6BIEeXbMhNm1R",
   },
   {
@@ -69,8 +67,7 @@ export default function Tools() {
     <div className="tools-container">
       <div className="tools-content">
         <h1 className="tool-title">
-          Winning Tools{" "}
-          <span className="animated-text">{animatedWords[index]}</span>
+          Winning Tools <span className="animated-text">{animatedWords[index]}</span>
         </h1>
 
         <p className="tool-description">
@@ -79,23 +76,20 @@ export default function Tools() {
           your project to the stars!
         </p>
 
+        {/* Coming Soon Message - Always Displayed */}
+        <h2 className="coming-soon"> ⚡Coming Very Soon!</h2>
+
         {/* Cards Section */}
         <div className="cards-container">
           {cards.map((card) => (
-            <a
-              key={card.id}
-              href={card.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-link"
-            >
+            <a key={card.id} href={card.link} target="_blank" rel="noopener noreferrer" className="card-link">
               <div className="card">
                 <div className="card-left">
                   <img src={card.gif} alt="GIF" className="card-gif" />
                 </div>
                 <div className="card-right">
                   <h3 className="card-title">
-                    {card.title} <i class="ri-arrow-right-up-line"></i>
+                    {card.title} <i className="ri-arrow-right-up-line"></i>
                   </h3>
                   <p className="card-description">{card.description}</p>
                 </div>
