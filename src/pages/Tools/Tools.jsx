@@ -9,45 +9,46 @@ const animatedWords = ["#Ideas", "#Designs", "#Innovations", "#Tips"];
 const cards = [
   {
     id: 1,
-    gif: bulbGif, 
-    title: "Idea Validation",
-    description: "Validate your hackathon ideas quickly with these tools.",
-    link: "https://example.com/idea-validation", 
+    gif: bulbGif,
+    title: "Hackathon Winning Ideas",
+    description: "Discover top hackathon projects that have won before!",
+    link: "https://github.com/Olanetsoft/awesome-hackathon-projects",
   },
+
   {
     id: 2,
-    gif: "https://app.testmyskills.ai/gifs/dashboard-achievement.gif", 
+    gif: "https://app.testmyskills.ai/gifs/dashboard-achievement.gif",
     title: "Design Tools",
     description: "Create stunning designs with Figma, Canva, and more.",
-    link: "https://example.com/design-tools", 
+    link: "https://example.com/design-tools",
   },
   {
     id: 3,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", 
+    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
     title: "APIs & Libraries",
     description: "Find APIs and libraries to power your project.",
-    link: "https://example.com/apis-libraries", 
+    link: "https://example.com/apis-libraries",
   },
   {
     id: 4,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", 
+    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
     title: "Hosting & Deployment",
     description: "Deploy your project for free with Vercel, Netlify, etc.",
-    link: "https://example.com/hosting-deployment", 
+    link: "https://example.com/hosting-deployment",
   },
   {
     id: 5,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", 
+    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
     title: "AI Tools",
     description: "Use AI tools like OpenAI and Hugging Face.",
-    link: "https://example.com/ai-tools", 
+    link: "https://example.com/ai-tools",
   },
   {
     id: 6,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif", 
+    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
     title: "Time Management",
     description: "Stay productive with Pomodoro timers and task managers.",
-    link: "https://example.com/time-management", 
+    link: "https://example.com/time-management",
   },
 ];
 
@@ -70,7 +71,9 @@ export default function Tools() {
         </h1>
 
         <p className="tool-description">
-          Hackathons are like space adventures – to reach new heights, you need the right tools. Explore these tools, sharpen your skills and take your project to the stars!
+          Hackathons are like space adventures – to reach new heights, you need
+          the right tools. Explore these tools, sharpen your skills and take
+          your project to the stars!
         </p>
 
         {/* Cards Section */}
@@ -88,7 +91,9 @@ export default function Tools() {
                   <img src={card.gif} alt="GIF" className="card-gif" />
                 </div>
                 <div className="card-right">
-                  <h3 className="card-title">{card.title} {" "}<i class="ri-arrow-right-up-line"></i></h3>
+                  <h3 className="card-title">
+                    {card.title} <i class="ri-arrow-right-up-line"></i>
+                  </h3>
                   <p className="card-description">{card.description}</p>
                 </div>
               </div>

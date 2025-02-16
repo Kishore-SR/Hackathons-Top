@@ -79,8 +79,7 @@
 }
 
 .card-gif {
-  width: 50px; /* Adjust GIF size */
-  height: 50px;
+  width: 60%; 
 }
 
 .card-right {
