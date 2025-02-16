@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import "./Tools.css";
 
 import bulbGif from "../../assets/icons/bulb.gif";
