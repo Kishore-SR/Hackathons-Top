@@ -1,92 +1,94 @@
+/* Main container */
 .tools-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  background-color: #fff;
+  min-height: 100vh;
   padding: 20px;
 }
 
-.tools-content {
-  text-align: center;
-  width: 100%;
+/* Box styling */
+.tools-box {
+  width: 90%;
   max-width: 600px;
-}
-
-.tools-img {
-  width: 100%;
-  max-width: 350px;
-  object-fit: contain;
-}
-
-.countdown-timer {
-  display: flex;
-  justify-content: center;
-  background-color: #f9f9f9; 
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-  width: max-content;
-  margin: auto;
-}
-
-.timer {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.time {
+  background: linear-gradient(45deg, #f59f00, #ffcc33);
+  border-radius: 20px;
+  padding: 20px;
   text-align: center;
-  padding: 8px;
-  min-width: 60px;
-  border: 1px solid #ccc; 
-  border-radius: 6px;
-  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.time p {
-  font-size: 20px;
-  margin: 0;
+/* tool-title styling */
+.tool-title {
+  display: inline-block;
+  background-color: #ffdb99;
+  color: #333;
+  font-size: 24px;
   font-weight: bold;
-  color: #333; 
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin: 10px 0;
 }
 
-.time span {
-  font-size: 12px;
-  color: #777; 
+/* Animated Text */
+.animated-text {
+  color: #008000;
+  font-size: 18px;
+  font-weight: bold;
+  height: 30px;
+  animation: fadeInOut 1.5s infinite;
 }
 
-.unlocking-text {
-  margin-top: 10px;
+/* Animation for words */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Info Box */
+.info-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon {
+  font-size: 24px;
+  color: #f59f00;
+  margin-right: 10px;
+}
+
+.info-text {
   font-size: 16px;
-  font-weight: bold;
-  color: rgb(252, 214, 118);
+  font-weight: 500;
+  color: #333;
 }
 
+/* Responsive */
 @media (max-width: 600px) {
-  .tools-img {
-    max-width: 250px;
+  .tool-title {
+    font-size: 20px;
+    padding: 8px 16px;
   }
-
-  .timer {
-    gap: 10px;
-  }
-
-  .time {
-    min-width: 50px;
-    padding: 6px;
-  }
-
-  .time p {
+  
+  .animated-text {
     font-size: 16px;
   }
-
-  .time span {
-    font-size: 10px;
+  
+  .info-box {
+    width: 90%;
+    padding: 8px;
   }
 
-  .unlocking-text {
+  .info-text {
     font-size: 14px;
   }
 }
