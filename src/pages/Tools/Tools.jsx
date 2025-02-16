@@ -5,8 +5,6 @@ import bulbGif from "../../assets/icons/bulb.gif";
 import proGif from "../../assets/icons/pro.gif";
 import apiGif from "../../assets/icons/api.gif";
 
-const animatedWords = ["#Ideas", "#Designs", "#Innovations", "#Tips"];
-
 // Cards data
 const cards = [
   {
@@ -54,20 +52,12 @@ const cards = [
 ];
 
 export default function Tools() {
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % animatedWords.length);
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <div className="tools-container">
       <div className="tools-content">
         <h1 className="tool-title">
-          Winning Tools <span className="animated-text">{animatedWords[index]}</span>
+          Winning Tools
         </h1>
 
         <p className="tool-description">
@@ -76,14 +66,16 @@ export default function Tools() {
           your project to the stars!
         </p>
 
-        {/* Coming Soon Message - Always Displayed */}
-        <h2 className="coming-soon"> ⚡Coming Very Soon!</h2>
-
         {/* Cards Section */}
         <div className="cards-container">
-<<<<<<< HEAD
           {cards.map((card) => (
-            <a key={card.id} href={card.link} target="_blank" rel="noopener noreferrer" className="card-link">
+            <a
+              key={card.id}
+              href={card.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-link"
+            >
               <div className="card">
                 <div className="card-left">
                   <img src={card.gif} alt="GIF" className="card-gif" />
@@ -97,7 +89,6 @@ export default function Tools() {
               </div>
             </a>
           ))}
-=======
           {cards.length > 0 ? (
             cards.map((card) => (
               <a
@@ -123,7 +114,6 @@ export default function Tools() {
           ) : (
             <h2 className="coming-soon">🚀 Coming Soon! 🚀</h2>
           )}
->>>>>>> 075de81 (update: Tools page)
         </div>
       </div>
     </div>

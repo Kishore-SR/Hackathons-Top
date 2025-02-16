@@ -17,20 +17,10 @@
   color: rgb(63, 63, 63);
   text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
   text-align: left;
-}
 
-.animated-text {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #f59f00;
-  font-family: 'Courier New', Courier, monospace;
-  text-shadow: none;
-  animation: fadeInOut 1.5s infinite;
-}
-
-@keyframes fadeInOut {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+  display:flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .tool-description {
@@ -63,8 +53,6 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-display: none;
 }
 
 .card:hover {
