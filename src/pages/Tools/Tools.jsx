@@ -3,6 +3,7 @@ import "./Tools.css";
 
 import bulbGif from "../../assets/icons/bulb.gif";
 import proGif from "../../assets/icons/pro.gif";
+import apiGif from "../../assets/icons/api.gif";
 
 const animatedWords = ["#Ideas", "#Designs", "#Innovations", "#Tips"];
 
@@ -11,7 +12,7 @@ const cards = [
   {
     id: 1,
     gif: bulbGif,
-    title: "Hackathon Winning Ideas",
+    title: "Winning Ideas",
     description: "Discover top hackathon projects that have won before!",
     link: "https://github.com/Olanetsoft/awesome-hackathon-projects",
   },
@@ -26,10 +27,10 @@ const cards = [
   },
   {
     id: 3,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
-    title: "APIs & Libraries",
-    description: "Find APIs and libraries to power your project.",
-    link: "https://example.com/apis-libraries",
+    gif: apiGif,
+    title: "Free APIs",
+    description: "List of free APIs to build powerful projects.",
+    link: "https://github.com/public-apis/public-apis",
   },
   {
     id: 4,
