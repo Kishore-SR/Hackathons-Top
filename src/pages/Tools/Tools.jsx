@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import "./Tools.css";
 
 import bulbGif from "../../assets/icons/bulb.gif";
+import proGif from "../../assets/icons/pro.gif";
 
 const animatedWords = ["#Ideas", "#Designs", "#Innovations", "#Tips"];
 
-// Card data
+// Cards data
 const cards = [
   {
     id: 1,
@@ -17,10 +18,11 @@ const cards = [
 
   {
     id: 2,
-    gif: "https://app.testmyskills.ai/gifs/dashboard-achievement.gif",
-    title: "Design Tools",
-    description: "Create stunning designs with Figma, Canva, and more.",
-    link: "https://example.com/design-tools",
+    gif: proGif,
+    title: "Canva Premium",
+    description:
+      "To design high quality PPTs for your idea submissions.",
+    link: "https://whatsapp.com/channel/0029Va8PdHQ6BIEeXbMhNm1R",
   },
   {
     id: 3,
