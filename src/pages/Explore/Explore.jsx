@@ -180,6 +180,7 @@ const Explore = () => {
             <p>
               In this galaxy of hackathons, you are the astronaut - find your
               stars and launch your ideas into orbit.
+              {" "}
               <span className="extra-text">
                 Your journey to victory begins now! Submit a hackathon and help
                 fellow explorers discover new opportunities.
