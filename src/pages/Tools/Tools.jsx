@@ -1,4 +1,5 @@
 import "./Tools.css";
+import { Title } from "../../components/Title/Title";
 
 import bulbGif from "../../assets/icons/bulb.gif";
 import proGif from "../../assets/icons/pro.gif";
@@ -65,14 +66,14 @@ const cards = [
 
 export default function Tools() {
   return (
+    <>
+    <Title />
     <div className="tools-container">
       <div className="tools-content">
         <h1 className="tool-title">Toolbox</h1>
 
         <p className="tool-description">
-          Hackathons are like space adventures – to reach new heights, you need
-          the right tools. Explore these tools, sharpen your skills and take
-          your project to the stars!
+        Winning a hackathon is easier when you have the right tools and strategy.
         </p>
 
         {/* Cards Section */}
@@ -101,5 +102,12 @@ export default function Tools() {
         </div>
       </div>
     </div>
+
+    <main className="footer-bottom">
+        <img src={logo} alt="logo" />
+        <p style={{ color: "#252525" }}>Top Hackathons &copy; 2025</p>
+      </main>
+    </>     
+
   );
 }
