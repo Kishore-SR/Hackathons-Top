@@ -11,6 +11,8 @@ import designGif from "../../assets/icons/design.gif";
 import crownGif from "../../assets/icons/crown.gif";
 import diamondGif from "../../assets/icons/diamond.gif";
 import thunderGif from "../../assets/icons/thunder.gif";
+import tickGif from "../../assets/icons/tick.gif";
+
 import ShinyText from "../../components/ShinyText/ShinyText";
 
 // Cards data
@@ -31,13 +33,20 @@ const cards = [
   },
   {
     id: 3,
+    gif: thunderGif, 
+    title: "AI Chatroom",
+    description: "Chat and compare all powerful AI models at once.",
+    link: "https://chathub.gg/",
+  },  
+  {
+    id: 4,
     gif: apiGif,
     title: "Free APIs",
     description: "List of free APIs to build powerful projects.",
     link: "https://github.com/public-apis/public-apis",
   },
   {
-    id: 4,
+    id: 5,
     gif: designGif,
     title: "Design Inspiration",
     description:
@@ -45,24 +54,24 @@ const cards = [
     link: "https://calltoinspiration.com/",
   },
   {
-    id: 5,
+    id: 6,
     gif: crownGif,
     title: "Animated Components",
     description: "A collection of animated React components with source code.",
     link: "https://www.reactbits.dev/",
   },
   {
-    id: 6,
+    id: 7,
     gif: diamondGif,
     title: "UI Components",
     description: "Explore a vast collection of free buttons & loaders.",
     link: "https://uiverse.io/",
   },
   {
-    id: 7,
-    gif: thunderGif,
+    id: 8,
+    gif: tickGif,
     title: "API Testing",
-    description: "A fast and open-source website-based API testing tool.",
+    description: "A fast and open-source website based API testing tool.",
     link: "https://hoppscotch.io/",
   },
 ];
@@ -95,7 +104,7 @@ export default function Tools() {
                 >
                   <div className="card">
                     <div className="card-left">
-                      <img src={card.gif} alt="GIF" className="card-gif" />
+                      <img src={card.gif} alt="icon" className="card-gif" />
                     </div>
                     <div className="card-right">
                       <h3 className="card-title">
