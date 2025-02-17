@@ -6,6 +6,7 @@ import apiGif from "../../assets/icons/api.gif";
 import designGif from "../../assets/icons/design.gif";
 import crownGif from "../../assets/icons/crown.gif";
 import diamondGif from "../../assets/icons/diamond.gif";
+import thunderGif from "../../assets/icons/thunder.gif";
 
 // Cards data
 const cards = [
@@ -55,9 +56,9 @@ const cards = [
   },
   {
     id: 7,
-    gif: apiGif,
+    gif: thunderGif,
     title: "API Testing",
-    description: "A fast and open-source website-based API testing.",
+    description: "A fast and open-source website based API testing.",
     link: "https://hoppscotch.io/",
   },
 ];
