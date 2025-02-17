@@ -3,6 +3,7 @@ import { Title } from "../../components/Title/Title";
 import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/icons/Top-Hackathons.svg";
+import { Helmet } from "react-helmet-async";
 
 import bulbGif from "../../assets/icons/bulb.gif";
 import proGif from "../../assets/icons/pro.gif";
@@ -33,11 +34,11 @@ const cards = [
   },
   {
     id: 3,
-    gif: thunderGif, 
+    gif: thunderGif,
     title: "AI Chatroom",
     description: "Chat and compare all powerful AI models at once.",
     link: "https://chathub.gg/",
-  },  
+  },
   {
     id: 4,
     gif: apiGif,
@@ -82,6 +83,29 @@ export default function Tools() {
 
   return (
     <>
+      <Helmet>
+        <title>Tools & Resources | Top Hackathons</title>
+        <meta
+          name="description"
+          content="Find the best tools and resources to help you win hackathons. Explore APIs, design tools, idea repositories, and more on Hackathons.top."
+        />
+        <meta
+          name="keywords"
+          content="hackathon tools, free APIs, design resources, winning ideas, hackathon resources, coding tools"
+        />
+        <meta name="author" content="Kishore S R" />
+        <meta
+          property="og:title"
+          content="Best Hackathon Tools & Resources | Hackathons.top"
+        />
+        <meta
+          property="og:description"
+          content="Explore essential hackathon tools, APIs, and resources to build winning projects!"
+        />
+        <meta property="og:url" content="https://hackathons.top/tools" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+
       <Title />
       <div className="tools-container">
         <div className="tools-content">
@@ -128,13 +152,13 @@ export default function Tools() {
         </div>
       </div>
 
-      {(isSignedIn) && (
-      <ShinyText  text="More tools soon..." speed={5} className="more-text" /> 
-     )}
+      {isSignedIn && (
+        <ShinyText text="More tools soon..." speed={5} className="more-text" />
+      )}
 
       <main className="footer-bottom" style={{ marginTop: "10px" }}>
         <img src={logo} alt="logo" />
-        <p style={{ color: "#5e5d5d", }}>Top Hackathons &copy; 2025</p>
+        <p style={{ color: "#5e5d5d" }}>Top Hackathons &copy; 2025</p>
       </main>
     </>
   );
