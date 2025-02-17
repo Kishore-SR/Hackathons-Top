@@ -11,6 +11,7 @@ import designGif from "../../assets/icons/design.gif";
 import crownGif from "../../assets/icons/crown.gif";
 import diamondGif from "../../assets/icons/diamond.gif";
 import thunderGif from "../../assets/icons/thunder.gif";
+import ShinyText from "../../components/ShinyText/ShinyText";
 
 // Cards data
 const cards = [
@@ -53,7 +54,7 @@ const cards = [
   {
     id: 6,
     gif: diamondGif,
-    title: "Free UI Components",
+    title: "UI Components",
     description: "Explore a vast collection of free buttons & loaders.",
     link: "https://uiverse.io/",
   },
@@ -118,9 +119,13 @@ export default function Tools() {
         </div>
       </div>
 
-      <main className="footer-bottom">
+      {(isSignedIn) && (
+      <ShinyText  text="More tools soon..." speed={5} className="more-text" /> 
+     )}
+
+      <main className="footer-bottom" style={{ marginTop: "10px" }}>
         <img src={logo} alt="logo" />
-        <p style={{ color: "#252525" }}>Top Hackathons &copy; 2025</p>
+        <p style={{ color: "#5e5d5d", }}>Top Hackathons &copy; 2025</p>
       </main>
     </>
   );

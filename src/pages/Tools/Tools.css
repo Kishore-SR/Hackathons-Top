@@ -136,7 +136,11 @@
   color: #666;
   margin-top: 8px;
 }
-
+.more-text{
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .tools-container {
@@ -145,7 +149,12 @@
     margin: auto;
     margin-top: 10%;
   }
-
+  .cards-container {
+    gap: 30px;
+  }
+  .card{
+    height: 90px;
+  }
   .card-link {
     width: 100%;
   }
