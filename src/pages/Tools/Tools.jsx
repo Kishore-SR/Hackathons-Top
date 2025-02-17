@@ -72,7 +72,7 @@ const cards = [
     id: 8,
     gif: tickGif,
     title: "API Testing",
-    description: "A fast and open-source website based API testing tool.",
+    description: "Fast, open source and web-based API testing tool.",
     link: "https://hoppscotch.io/",
   },
 ];
