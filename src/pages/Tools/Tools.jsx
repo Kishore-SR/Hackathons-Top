@@ -3,6 +3,7 @@ import "./Tools.css";
 import bulbGif from "../../assets/icons/bulb.gif";
 import proGif from "../../assets/icons/pro.gif";
 import apiGif from "../../assets/icons/api.gif";
+import designGif from "../../assets/icons/design.gif";
 
 // Cards data
 const cards = [
@@ -29,18 +30,21 @@ const cards = [
   },
   {
     id: 4,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
-    title: "Hosting & Deployment",
-    description: "Deploy your project for free with Vercel, Netlify, etc.",
-    link: "https://example.com/hosting-deployment",
+    gif: designGif,
+    title: "Design Inspiration",
+    description:
+      "Find creative design ideas and inspiration for your projects.",
+    link: "https://calltoinspiration.com/",
   },
   {
     id: 5,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
-    title: "AI Tools",
-    description: "Use AI tools like OpenAI and Hugging Face.",
-    link: "https://example.com/ai-tools",
+    gif: apiGif,
+    title: "Animated Components",
+    description:
+      "A huge collection of animated React components with source code.",
+    link: "https://www.reactbits.dev/",
   },
+
   {
     id: 6,
     gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
@@ -51,13 +55,10 @@ const cards = [
 ];
 
 export default function Tools() {
-
   return (
     <div className="tools-container">
       <div className="tools-content">
-        <h1 className="tool-title">
-          Winning Tools
-        </h1>
+        <h1 className="tool-title">Toolbox</h1>
 
         <p className="tool-description">
           Hackathons are like space adventures – to reach new heights, you need
@@ -88,31 +89,6 @@ export default function Tools() {
               </div>
             </a>
           ))}
-          {cards.length > 0 ? (
-            cards.map((card) => (
-              <a
-                key={card.id}
-                href={card.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link"
-              >
-                <div className="card">
-                  <div className="card-left">
-                    <img src={card.gif} alt="GIF" className="card-gif" />
-                  </div>
-                  <div className="card-right">
-                    <h3 className="card-title">
-                      {card.title} <i className="ri-arrow-right-up-line"></i>
-                    </h3>
-                    <p className="card-description">{card.description}</p>
-                  </div>
-                </div>
-              </a>
-            ))
-          ) : (
-            <h2 className="coming-soon">🚀 Coming Soon! 🚀</h2>
-          )}
         </div>
       </div>
     </div>
