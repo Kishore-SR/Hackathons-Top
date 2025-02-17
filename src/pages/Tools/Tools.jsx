@@ -1,5 +1,8 @@
 import "./Tools.css";
 import { Title } from "../../components/Title/Title";
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+import logo from "../../assets/icons/Top-Hackathons.svg";
 
 import bulbGif from "../../assets/icons/bulb.gif";
 import proGif from "../../assets/icons/pro.gif";
@@ -22,7 +25,7 @@ const cards = [
     id: 2,
     gif: proGif,
     title: "Canva Premium",
-    description: "To design high quality PPTs for your idea submissions.",
+    description: "To design high-quality PPTs for your idea submissions.",
     link: "https://whatsapp.com/channel/0029Va8PdHQ6BIEeXbMhNm1R",
   },
   {
@@ -47,7 +50,6 @@ const cards = [
     description: "A collection of animated React components with source code.",
     link: "https://www.reactbits.dev/",
   },
-
   {
     id: 6,
     gif: diamondGif,
@@ -59,55 +61,67 @@ const cards = [
     id: 7,
     gif: thunderGif,
     title: "API Testing",
-    description: "A fast and open-source website based API testing.",
+    description: "A fast and open-source website-based API testing tool.",
     link: "https://hoppscotch.io/",
   },
 ];
 
 export default function Tools() {
+  const { isSignedIn } = useUser();
+  const navigate = useNavigate();
+
   return (
     <>
-    <Title />
-    <div className="tools-container">
-      <div className="tools-content">
-        <h1 className="tool-title">Toolbox</h1>
+      <Title />
+      <div className="tools-container">
+        <div className="tools-content">
+          <h1 className="tool-title">Toolbox</h1>
+          <p className="tool-description">
+            Winning a hackathon is easier when you have the right tools and
+            strategy.
+          </p>
 
-        <p className="tool-description">
-        Winning a hackathon is easier when you have the right tools and strategy.
-        </p>
+          {/* Cards Section with Blur Effect */}
+          <div className="cards-section">
+            <div className={`cards-container ${!isSignedIn ? "blurred" : ""}`}>
+              {cards.map((card) => (
+                <a
+                  key={card.id}
+                  href={card.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card-link"
+                >
+                  <div className="card">
+                    <div className="card-left">
+                      <img src={card.gif} alt="GIF" className="card-gif" />
+                    </div>
+                    <div className="card-right">
+                      <h3 className="card-title">
+                        {card.title} <i className="ri-arrow-right-up-line"></i>
+                      </h3>
+                      <p className="card-description">{card.description}</p>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
 
-        {/* Cards Section */}
-        <div className="cards-container">
-          {cards.map((card) => (
-            <a
-              key={card.id}
-              href={card.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-link"
-            >
-              <div className="card">
-                <div className="card-left">
-                  <img src={card.gif} alt="GIF" className="card-gif" />
-                </div>
-                <div className="card-right">
-                  <h3 className="card-title">
-                    {card.title} <i className="ri-arrow-right-up-line"></i>
-                  </h3>
-                  <p className="card-description">{card.description}</p>
-                </div>
+            {/* Overlay - Only on Cards Section */}
+            {!isSignedIn && (
+              <div className="cards-overlay" onClick={() => navigate("/login")}>
+                <i className="ri-lock-fill lock-icon"></i>
+                <p className="overlay-text">Login to Unlock</p>
               </div>
-            </a>
-          ))}
+            )}
+          </div>
         </div>
       </div>
-    </div>
 
-    <main className="footer-bottom">
+      <main className="footer-bottom">
         <img src={logo} alt="logo" />
         <p style={{ color: "#252525" }}>Top Hackathons &copy; 2025</p>
       </main>
-    </>     
-
+    </>
   );
 }
