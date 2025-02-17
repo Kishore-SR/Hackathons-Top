@@ -4,6 +4,8 @@ import bulbGif from "../../assets/icons/bulb.gif";
 import proGif from "../../assets/icons/pro.gif";
 import apiGif from "../../assets/icons/api.gif";
 import designGif from "../../assets/icons/design.gif";
+import crownGif from "../../assets/icons/crown.gif";
+import diamondGif from "../../assets/icons/diamond.gif";
 
 // Cards data
 const cards = [
@@ -38,19 +40,25 @@ const cards = [
   },
   {
     id: 5,
-    gif: apiGif,
+    gif: crownGif,
     title: "Animated Components",
-    description:
-      "A huge collection of animated React components with source code.",
+    description: "A collection of animated React components with source code.",
     link: "https://www.reactbits.dev/",
   },
 
   {
     id: 6,
-    gif: "https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif",
-    title: "Time Management",
-    description: "Stay productive with Pomodoro timers and task managers.",
-    link: "https://example.com/time-management",
+    gif: diamondGif,
+    title: "Free UI Components",
+    description: "Explore a vast collection of free buttons & loaders.",
+    link: "https://uiverse.io/",
+  },
+  {
+    id: 7,
+    gif: apiGif,
+    title: "API Testing",
+    description: "A fast and open-source website-based API testing.",
+    link: "https://hoppscotch.io/",
   },
 ];
 
