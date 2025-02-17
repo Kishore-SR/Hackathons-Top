@@ -110,7 +110,7 @@ export default function Tools() {
             {/* Overlay - Only on Cards Section */}
             {!isSignedIn && (
               <div className="cards-overlay" onClick={() => navigate("/login")}>
-                <i className="ri-lock-fill lock-icon"></i>
+                <i class="ri-lock-2-fill lock-icon"></i>
                 <p className="overlay-text">Login to Unlock</p>
               </div>
             )}
