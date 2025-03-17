@@ -318,14 +318,14 @@ const Explore = () => {
                         <div className="status-container">
                           <span
                             className={`status-text ${getStatusClass(
-                              hackathon.end || hackathon.end_date,
+                              hackathon.end_date || hackathon.end_date,
                               isClosed
                             )}`}
                           >
                             {isClosed
                               ? "Registration Closed"
                               : getDaysLeftText(
-                                  hackathon.end || hackathon.end_date
+                                  hackathon.end_date || hackathon.end_date
                                 )}
                           </span>
 
