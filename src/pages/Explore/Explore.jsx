@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase/firebaseConfig";
-import { collection, getDocs } from "firebase/firestore";
+import { supabase } from "../../server/supabaseClient";
 import "./Explore.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Footer } from "../../components/Footer/Footer";
 import { Title } from "../../components/Title/Title";
 import { Helmet } from "react-helmet-async";
 import { Loading } from "../../components/Loading/Loading";
-import { useUser } from "@clerk/clerk-react"; // Clerk Auth Hook
+import { useUser } from "@clerk/clerk-react";
 
 const Explore = () => {
-  const { isSignedIn } = useUser(); // Check if user is logged in
-  const navigate = useNavigate(); // For redirecting
+  const { isSignedIn } = useUser();
+  const navigate = useNavigate();
   const [hackathons, setHackathons] = useState([]);
   const [filteredHackathons, setFilteredHackathons] = useState([]);
   const [sortOption, setSortOption] = useState("nearest");
@@ -19,29 +18,41 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [visibleHackathons, setVisibleHackathons] = useState(9); // Show 9 initially
   const [states, setStates] = useState([]); // State for storing state filters
-  const [selectedState, setSelectedState] = useState(null); // State for selected filter
+  const [selectedState, setSelectedState] = useState(null);
 
   useEffect(() => {
     const fetchHackathons = async () => {
-      const querySnapshot = await getDocs(collection(db, "hackathons"));
-      let hackathonList = [];
-      querySnapshot.forEach((doc) => {
-        hackathonList.push({ id: doc.id, ...doc.data() });
+      // Fetch hackathons from Supabase
+      const { data, error } = await supabase.from("hackathons").select("*");
+
+      if (error) {
+        console.error("Error fetching hackathons:", error);
+        setLoading(false);
+        return;
+      }
+
+      let hackathonList = data || [];
+
+      hackathonList = hackathonList.map((hackathon) => {
+        return {
+          ...hackathon,
+          poster_url: hackathon.poster_url || hackathon.posterUrl,
+          end_date: hackathon.end_date || hackathon.end,
+          date: hackathon.date,
+          formattedDate: formatDateString(hackathon.date),
+        };
       });
 
-      // Count state occurrences
       const stateCounts = {};
       hackathonList.forEach((hackathon) => {
-        const state = hackathon.state || "Online"; // Default to "Online" if state is missing
+        const state = hackathon.state || "Online";
         stateCounts[state] = (stateCounts[state] || 0) + 1;
       });
 
-      // Convert to array and sort by count
       const sortedStates = Object.keys(stateCounts).sort(
         (a, b) => stateCounts[b] - stateCounts[a]
       );
 
-      // Format states with counts
       const formattedStates = sortedStates.map((state) => ({
         name: state,
         count: stateCounts[state],
@@ -72,19 +83,33 @@ const Explore = () => {
     fetchHackathons();
   }, []);
 
-  // Function to handle state filter click
+  const formatDateString = (dateStr) => {
+    if (!dateStr) return "";
+
+    try {
+      const date = new Date(dateStr);
+
+      const day = date.getDate();
+      const month = date.toLocaleString("en-US", { month: "long" });
+      const year = date.getFullYear();
+
+      return `${day} ${month}, ${year}`;
+    } catch (error) {
+      console.error("Error formatting date:", error);
+      return dateStr;
+    }
+  };
+
   const handleStateFilter = (state) => {
     if (!isSignedIn) {
-      navigate("/login"); // Redirect to login if not signed in
+      navigate("/login");
       return;
     }
 
     if (selectedState === state) {
-      // If the same state is clicked again, reset the filter
       setSelectedState(null);
       setFilteredHackathons(hackathons);
     } else {
-      // Filter hackathons by the selected state
       setSelectedState(state);
       const filtered = hackathons.filter(
         (hackathon) => hackathon.state === state
@@ -148,14 +173,13 @@ const Explore = () => {
 
   useEffect(() => {
     if (!loading) {
-      // Start animation only after loading completes
       setCount(0);
       let start = 0;
       const interval = setInterval(() => {
         start += 1;
         setCount(start);
         if (start >= totalHackathons) clearInterval(interval);
-      }, 50); // Speed of animation
+      }, 50);
 
       return () => clearInterval(interval);
     }
@@ -179,8 +203,7 @@ const Explore = () => {
             <h1>Explore Hackathons</h1>
             <p>
               In this galaxy of hackathons, you are the astronaut - find your
-              stars and launch your ideas into orbit.
-              {" "}
+              stars and launch your ideas into orbit.{" "}
               <span className="extra-text">
                 Your journey to victory begins now! Submit a hackathon and help
                 fellow explorers discover new opportunities.
@@ -270,15 +293,17 @@ const Explore = () => {
                       style={{ opacity: isClosed ? 0.7 : 1 }}
                     >
                       <img
-                        src={hackathon.posterUrl}
+                        src={hackathon.poster_url || hackathon.posterUrl} 
                         alt="Poster"
                         className="hackathon-poster"
                       />
+
                       <div className="hackathon-details">
                         <h2>{hackathon.name}</h2>
                         <p>
                           <i className="ri-calendar-2-line"></i>{" "}
-                          {hackathon.date}
+                          {hackathon.formattedDate ||
+                            formatDateString(hackathon.date)}
                         </p>
                         <p>
                           <i className="ri-map-pin-2-line"></i>{" "}
@@ -293,13 +318,15 @@ const Explore = () => {
                         <div className="status-container">
                           <span
                             className={`status-text ${getStatusClass(
-                              hackathon.end,
+                              hackathon.end || hackathon.end_date,
                               isClosed
                             )}`}
                           >
                             {isClosed
                               ? "Registration Closed"
-                              : getDaysLeftText(hackathon.end)}
+                              : getDaysLeftText(
+                                  hackathon.end || hackathon.end_date
+                                )}
                           </span>
 
                           <button
