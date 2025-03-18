@@ -16,8 +16,8 @@ const Explore = () => {
   const [sortOption, setSortOption] = useState("nearest");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [visibleHackathons, setVisibleHackathons] = useState(9); // Show 9 initially
-  const [states, setStates] = useState([]); // State for storing state filters
+  const [visibleHackathons, setVisibleHackathons] = useState(9); 
+  const [states, setStates] = useState([]); 
   const [selectedState, setSelectedState] = useState(null);
 
   useEffect(() => {
@@ -60,28 +60,47 @@ const Explore = () => {
 
       setStates(formattedStates);
 
-      let ongoingHackathons = [];
-      let closedHackathons = [];
-
-      hackathonList.forEach((hackathon) => {
-        const isClosed = new Date(hackathon.end) < new Date();
-        if (isClosed) {
-          closedHackathons.push(hackathon);
-        } else {
-          ongoingHackathons.push(hackathon);
-        }
-      });
-
-      ongoingHackathons.sort((a, b) => new Date(a.date) - new Date(b.date));
-      const finalHackathonList = [...ongoingHackathons, ...closedHackathons];
-
-      setHackathons(finalHackathonList);
-      setFilteredHackathons(finalHackathonList);
+      sortHackathons(hackathonList, "nearest");
+      setHackathons(hackathonList);
       setLoading(false);
     };
 
     fetchHackathons();
   }, []);
+
+  // Function to sort hackathons
+  const sortHackathons = (hackathonList, option) => {
+    let sortedHackathons = [...hackathonList];
+
+    const closedHackathons = sortedHackathons.filter((hackathon) =>
+      isHackathonClosed(hackathon)
+    );
+
+    let ongoingHackathons = sortedHackathons.filter(
+      (hackathon) => !isHackathonClosed(hackathon)
+    );
+
+    if (option === "nearest") {
+      ongoingHackathons.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else if (option === "farthest") {
+      ongoingHackathons.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (option === "highestPrize") {
+      ongoingHackathons.sort((a, b) => {
+        const prizeA = parseInt(a.prize.replace(/[^0-9]/g, "") || "0");
+        const prizeB = parseInt(b.prize.replace(/[^0-9]/g, "") || "0");
+        return prizeB - prizeA;
+      });
+    } else if (option === "recentlyAdded") {
+      ongoingHackathons.sort((a, b) => {
+        const numA = parseInt(a.id.split("_")[0] || "0");
+        const numB = parseInt(b.id.split("_")[0] || "0");
+        return numB - numA;
+      });
+    }
+
+    const finalHackathons = [...ongoingHackathons, ...closedHackathons];
+    return finalHackathons;
+  };
 
   const formatDateString = (dateStr) => {
     if (!dateStr) return "";
@@ -108,46 +127,36 @@ const Explore = () => {
 
     if (selectedState === state) {
       setSelectedState(null);
-      setFilteredHackathons(hackathons);
+      setFilteredHackathons(sortHackathons(hackathons, sortOption));
     } else {
       setSelectedState(state);
       const filtered = hackathons.filter(
         (hackathon) => hackathon.state === state
       );
-      setFilteredHackathons(filtered);
+      setFilteredHackathons(sortHackathons(filtered, sortOption));
     }
   };
 
   const handleSort = (option) => {
-    let sortedHackathons = [...hackathons];
-    const closedHackathons = sortedHackathons.filter(
-      (hackathon) => new Date(hackathon.end) < new Date()
-    );
-    let ongoingHackathons = sortedHackathons.filter(
-      (hackathon) => new Date(hackathon.end) >= new Date()
+    const sortedHackathons = sortHackathons(
+      selectedState ? filteredHackathons : hackathons,
+      option
     );
 
-    if (option === "nearest") {
-      ongoingHackathons.sort((a, b) => new Date(a.date) - new Date(b.date));
-    } else if (option === "farthest") {
-      ongoingHackathons.sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else if (option === "highestPrize") {
-      ongoingHackathons.sort(
-        (a, b) =>
-          parseInt(b.prize.replace(/[^0-9]/g, "")) -
-          parseInt(a.prize.replace(/[^0-9]/g, ""))
-      );
-    } else if (option === "recentlyAdded") {
-      ongoingHackathons.sort((a, b) => {
-        const numA = parseInt(a.id.split("_")[0]);
-        const numB = parseInt(b.id.split("_")[0]);
-        return numB - numA;
-      });
-    }
-
-    setFilteredHackathons([...ongoingHackathons, ...closedHackathons]);
+    setFilteredHackathons(sortedHackathons);
     setSortOption(option);
     setShowSortOptions(false);
+  };
+
+  // Function to check if a hackathon is closed
+  const isHackathonClosed = (hackathon) => {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+
+    const endDate = new Date(hackathon.end_date || hackathon.end_date);
+    endDate.setHours(23, 59, 59, 999); 
+
+    return now > endDate;
   };
 
   const handleParticipateClick = (isClosed, hackathonUrl) => {
@@ -159,7 +168,6 @@ const Explore = () => {
     }
   };
 
-  // Function to load more hackathons
   const handleViewMore = () => {
     if (!isSignedIn) {
       navigate("/login");
@@ -184,6 +192,25 @@ const Explore = () => {
       return () => clearInterval(interval);
     }
   }, [loading]);
+
+  useEffect(() => {
+    if (hackathons.length > 0) {
+      setFilteredHackathons(sortHackathons(hackathons, sortOption));
+    }
+  }, [hackathons, sortOption]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showSortOptions && !event.target.closest(".sort-container")) {
+        setShowSortOptions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showSortOptions]);
 
   return (
     <main>
@@ -264,7 +291,7 @@ const Explore = () => {
                 <span className="blink-dot"></span>
                 <p>{count}+ Hackathons added recently </p>
               </div>
-            </div> 
+            </div>
 
             {/* State Filters */}
             <div className="state-filters">
@@ -285,15 +312,15 @@ const Explore = () => {
               {filteredHackathons
                 .slice(0, visibleHackathons)
                 .map((hackathon) => {
-                  const isClosed = new Date(hackathon.end) < new Date();
+                  const isClosed = isHackathonClosed(hackathon);
                   return (
                     <div
                       key={hackathon.id}
                       className="hackathon-card"
-                      style={{ opacity: isClosed ? 0.7 : 1 }}
+                      style={{ opacity: isClosed ? 0.6 : 1 }}
                     >
                       <img
-                        src={hackathon.poster_url || hackathon.posterUrl} 
+                        src={hackathon.poster_url || hackathon.posterUrl}
                         alt="Poster"
                         className="hackathon-poster"
                       />
@@ -318,14 +345,14 @@ const Explore = () => {
                         <div className="status-container">
                           <span
                             className={`status-text ${getStatusClass(
-                              hackathon.end_date || hackathon.end_date,
+                              hackathon.end_date || hackathon.end,
                               isClosed
                             )}`}
                           >
                             {isClosed
                               ? "Registration Closed"
                               : getDaysLeftText(
-                                  hackathon.end_date || hackathon.end_date
+                                  hackathon.end_date || hackathon.end
                                 )}
                           </span>
 
@@ -366,19 +393,36 @@ const Explore = () => {
 
 const getStatusClass = (endDate, isClosed) => {
   if (isClosed) return "grey";
-  const daysLeft = Math.ceil(
-    (new Date(endDate) - new Date()) / (1000 * 60 * 60 * 24)
-  );
-  if (daysLeft > 7) return "egreen";
-  if (daysLeft >= 4) return "eorange";
+
+  const now = new Date();
+  const end = new Date(endDate);
+  const diffMs = end - now;
+  const diffDays = diffMs / (1000 * 60 * 60 * 24);
+
+  if (diffDays > 7) return "egreen";
+  if (diffDays >= 4) return "eorange";
   return "ered";
 };
 
 const getDaysLeftText = (endDate) => {
-  const daysLeft = Math.ceil(
-    (new Date(endDate) - new Date()) / (1000 * 60 * 60 * 24)
-  );
-  return `Registration Ends in ${daysLeft} Days`;
+  const now = new Date();
+  const end = new Date(endDate);
+  const diffMs = end - now;
+
+  if (diffMs <= 0) {
+    return "Registration Closed";
+  }
+
+  if (diffMs < 24 * 60 * 60 * 1000) {
+    const hoursLeft = Math.ceil(diffMs / (1000 * 60 * 60));
+    return `Registration Ends in ${hoursLeft} ${
+      hoursLeft === 1 ? "Hour" : "Hours"
+    }`;
+  }
+
+  // Default to days
+  const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+  return `Registration Ends in ${daysLeft} ${daysLeft === 1 ? "Day" : "Days"}`;
 };
 
 export default Explore;
