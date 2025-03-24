@@ -16,8 +16,8 @@ const Explore = () => {
   const [sortOption, setSortOption] = useState("nearest");
   const [showSortOptions, setShowSortOptions] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [visibleHackathons, setVisibleHackathons] = useState(9); 
-  const [states, setStates] = useState([]); 
+  const [visibleHackathons, setVisibleHackathons] = useState(9);
+  const [states, setStates] = useState([]);
   const [selectedState, setSelectedState] = useState(null);
 
   useEffect(() => {
@@ -154,7 +154,7 @@ const Explore = () => {
     now.setHours(0, 0, 0, 0);
 
     const endDate = new Date(hackathon.end_date || hackathon.end_date);
-    endDate.setHours(23, 59, 59, 999); 
+    endDate.setHours(23, 59, 59, 999);
 
     return now > endDate;
   };
@@ -176,7 +176,7 @@ const Explore = () => {
     }
   };
 
-  const totalHackathons = 15;
+  const totalHackathons = 10;
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -420,7 +420,6 @@ const getDaysLeftText = (endDate) => {
     }`;
   }
 
-  // Default to days
   const daysLeft = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
   return `Registration Ends in ${daysLeft} ${daysLeft === 1 ? "Day" : "Days"}`;
 };
