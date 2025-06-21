@@ -176,7 +176,7 @@ const Explore = () => {
     }
   };
 
-  const totalHackathons = 10;
+  const totalHackathons = 15;
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -187,7 +187,7 @@ const Explore = () => {
         start += 1;
         setCount(start);
         if (start >= totalHackathons) clearInterval(interval);
-      }, 50);
+      }, 150);
 
       return () => clearInterval(interval);
     }

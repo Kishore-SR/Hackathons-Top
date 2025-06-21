@@ -212,6 +212,210 @@
 }
 /* Journey Section Ends */
 
+/* Feedback Popup */
+.feedback-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, rgb(109 251 255 / 90%) 0%, rgb(38 164 241 / 90%) 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  padding: 15px 20px;
+  z-index: 1000; /* Ensure popup is above overlay */
+  max-width: 300px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out forwards, popupFadeIn 0.5s ease-out forwards;
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-content p {
+  color: var(--black);
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.feedback-options {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.feedback-btn {
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.feedback-btn span {
+  user-select: none;
+}
+
+/* Disappearing animation (Thanos effect) */
+.disappearing {
+  animation: dissolve 1s forwards;
+}
+
+@keyframes dissolve {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.95) rotate(3deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.1) rotate(10deg);
+    filter: blur(10px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Thank you message */
+.thank-you-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--black);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  z-index: 1000;
+  text-align: center;
+  animation: slideUp 0.5s ease-out forwards, fadeOut 0.5s ease-out 2.5s forwards;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+}
+
+.thank-you-message p {
+  margin: 0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Popup background overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-out forwards;
+  overflow: hidden;
+}
+
+.popup-overlay.disappearing {
+  animation: fadeOutOverlay 1s forwards;
+}
+
+@keyframes fadeOutOverlay {
+  0% {
+    opacity: 1;
+    backdrop-filter: blur(5px);
+  }
+  100% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 600px) {
+  .feedback-popup {
+    max-width: 85%;
+    width: 85%;
+    border-radius: 15px;
+    padding: 18px 15px;
+  }
+    .popup-content p {
+    font-size: 1.15rem; /* Increased by 3px from 0.95rem */
+    margin-bottom: 12px;
+    padding: 0 5px;
+  }
+  
+  .feedback-options {
+    gap: 12px;
+  }  .thank-you-message {
+    bottom: 50px; /* Position 4px higher (from 46px to 50px) */
+    max-width: 90%;
+    padding: 8px 16px;
+    border-radius: 20px;
+  }
+  
+  .thank-you-message p {
+    font-size: 0.85rem;
+    white-space: nowrap; /* Ensure text stays on one line */
+  }
+}
+
 /* Responsive Design for Mobile */
 @media (max-width: 767px) {
   .hero-section {

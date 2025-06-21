@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import flyingRocket from "../../assets/astronaut/hero.gif";
@@ -9,8 +9,88 @@ import { Title } from "../../components/Title/Title";
 import { Footer } from "../../components/Footer/Footer";
 
 export const Home = () => {
+  const [showPopup, setShowPopup] = useState(true);
+  const [selectedFeedback, setSelectedFeedback] = useState(null);
+  const [isDisappearing, setIsDisappearing] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+
+  useEffect(() => {
+    const hasFeedback = localStorage.getItem("feedbackProvided");
+    if (hasFeedback) {
+      setShowPopup(false);
+    }
+  }, []);
+
+  // prevent scrolling when popup is shown
+  useEffect(() => {
+    if (showPopup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [showPopup]);
+
+
+
   return (
     <div className="home-container">
+      {/* Feedback Popup with Overlay */}
+      {showPopup && (
+        <>
+          <div
+            className={`popup-overlay ${isDisappearing ? "disappearing" : ""
+              }`}></div>
+          <div
+            className={`feedback-popup ${isDisappearing ? "disappearing" : ""
+              }`}
+          >
+            <div className="popup-content">
+              <p>Exciting updates and collaboration coming soon!</p>
+              <div className="feedback-options">
+                <button
+                  className="feedback-btn"
+                  onClick={() => handleFeedbackSelect("excited")}
+                  aria-label="Very excited"
+                >
+                  <span role="img" aria-label="Very excited">
+                    🤩
+                  </span>
+                </button>
+                <button
+                  className="feedback-btn"
+                  onClick={() => handleFeedbackSelect("smile")}
+                  aria-label="Smile"
+                >
+                  <span role="img" aria-label="Smile">
+                    😃
+                  </span>
+                </button>
+                <button
+                  className="feedback-btn"
+                  onClick={() => handleFeedbackSelect("neutral")}
+                  aria-label="Neutral"
+                >
+                  <span role="img" aria-label="Neutral">
+                    🙂
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Thank you message */}
+      {showThankYou && (
+        <div className="thank-you-message">
+          <p>Thank you for your enthusiasm!</p>
+        </div>
+      )}
+
       {/* Header */}
       <Title />
       <main>
