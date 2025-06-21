@@ -34,7 +34,22 @@ export const Home = () => {
     };
   }, [showPopup]);
 
+  const handleFeedbackSelect = (feedback) => {
+    setSelectedFeedback(feedback);
+    setIsDisappearing(true);
 
+    localStorage.setItem("feedbackProvided", "true");
+
+    // disappearing animation and show thank you message
+    setTimeout(() => {
+      setShowPopup(false);
+      setShowThankYou(true);
+
+      setTimeout(() => {
+        setShowThankYou(false);
+      }, 3000);
+    }, 1000);
+  };
 
   return (
     <div className="home-container">
